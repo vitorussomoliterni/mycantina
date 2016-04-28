@@ -8,6 +8,8 @@ namespace mycantina.DataAccess.Models
         public Bottle()
         {
             Reviews = new List<Review>();
+            GrapeVariety_Bottles = new List<GrapeVariety_Bottle>();
+            User_Bottles = new List<User_Bottle>();
         }
         public int Id { get; set; }
         public String Name { get; set; }

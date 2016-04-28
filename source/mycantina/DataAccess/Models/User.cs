@@ -11,6 +11,7 @@ namespace mycantina.DataAccess.Models
         public User()
         {
             Reviews = new List<Review>();
+            User_Bottles = new List<User_Bottle>();
         }
         public int Id { get; set; }
         public String FirstName { get; set; }

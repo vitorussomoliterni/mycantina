@@ -16,7 +16,7 @@ namespace mycantina.Services
             _context = context;
         }
 
-        public Bottle AddBottle(string name, string region, string country, string type, DateTime year, string producer, string description, decimal minPrice, decimal maxPrice)
+        public Bottle AddBottle(string name, string region, string country, string type, DateTime year, string producer, string description, decimal minPrice, decimal maxPrice, int grapeVarietyId)
         {
             var bottle = new Bottle()
             {
@@ -30,13 +30,26 @@ namespace mycantina.Services
                 MaxPrice = maxPrice
             };
 
+            var grapeVariety = _context.GrapeVarieties.Find(grapeVarietyId);
+
+            var grapeVariety_Bottle = new GrapeVariety_Bottle
+            {
+                BottleId = bottle.Id,
+                GrapeVarietyId = grapeVarietyId,
+                Bottle = bottle,
+                GrapeVariety = grapeVariety
+            };
+
+            bottle.GrapeVariety_Bottles.Add(grapeVariety_Bottle);
+
+            _context.GrapeVariety_Bottles.Add(grapeVariety_Bottle);
             _context.Bottles.Add(bottle);
             _context.SaveChanges();
 
             return bottle;
         }
 
-        public Bottle UpdateBottle(int id, string name, string region, string country, string type, DateTime year, string producer, string description, decimal minPrice, decimal maxPrice)
+        public Bottle UpdateBottle(int id, decimal minPrice, decimal maxPrice)
         {
             var bottle = _context.Bottles.Find(id);
 
@@ -45,13 +58,6 @@ namespace mycantina.Services
                 throw new InvalidOperationException("No bottle found for the provided id.");
             }
 
-            bottle.Name = name;
-            bottle.Region = region;
-            bottle.Country = country;
-            bottle.Type = type;
-            bottle.Year = year;
-            bottle.Producer = producer;
-            bottle.Description = description;
             bottle.MinPrice = minPrice;
             bottle.MaxPrice = maxPrice;
 
@@ -60,7 +66,7 @@ namespace mycantina.Services
             return bottle;
         }
 
-        public void DeleteBottle(int id)
+        public void RemoveBottle(int id)
         {
             var bottle = _context.Bottles.Find(id);
 
