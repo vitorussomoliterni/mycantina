@@ -8,6 +8,10 @@ namespace mycantina.DataAccess.Models
 {
     class User
     {
+        public User()
+        {
+            Reviews = new List<Review>();
+        }
         public int Id { get; set; }
         public String FirstName { get; set; }
         public String MiddleNames { get; set; }

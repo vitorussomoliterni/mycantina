@@ -9,6 +9,7 @@ namespace mycantina.DataAccess.Models
         public string Text { get; set; }
         public int Rating { get; set; }
         public DateTime DatePosted { get; set; }
+        public DateTime? DateModified { get; set; }
         public Bottle Bottle { get; set; }
     }
 }

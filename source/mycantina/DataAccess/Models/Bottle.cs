@@ -5,6 +5,10 @@ namespace mycantina.DataAccess.Models
 {
     public class Bottle
     {
+        public Bottle()
+        {
+            Reviews = new List<Review>();
+        }
         public int Id { get; set; }
         public String Name { get; set; }
         public String Region { get; set; }
