@@ -13,7 +13,7 @@ namespace mycantina.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 100),
-                        Region = c.String(nullable: false, maxLength: 100),
+                        Region = c.String(maxLength: 100),
                         Country = c.String(nullable: false, maxLength: 50, unicode: false),
                         Type = c.String(nullable: false, maxLength: 50),
                         Year = c.DateTime(nullable: false),
@@ -66,20 +66,32 @@ namespace mycantina.Migrations
                 "dbo.User_Bottle",
                 c => new
                     {
+                        Id = c.Int(nullable: false, identity: true),
                         UserId = c.Int(nullable: false),
                         BottleId = c.Int(nullable: false),
-                        DateAcquired = c.DateTime(nullable: false),
-                        DateOpened = c.DateTime(nullable: false),
+                        WineFormatId = c.Int(nullable: false),
+                        DateAcquired = c.DateTime(),
+                        DateOpened = c.DateTime(),
                         QtyOwned = c.Int(nullable: false),
                         Owned = c.Boolean(nullable: false),
-                        ByTheGlass = c.Boolean(nullable: false),
                         PricePaid = c.Decimal(nullable: false, storeType: "money"),
                     })
-                .PrimaryKey(t => new { t.UserId, t.BottleId })
+                .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Bottles", t => t.BottleId, cascadeDelete: true)
+                .ForeignKey("dbo.WineFormats", t => t.WineFormatId, cascadeDelete: true)
                 .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
-                .Index(t => t.BottleId);
+                .Index(t => t.BottleId)
+                .Index(t => t.WineFormatId);
+            
+            CreateTable(
+                "dbo.WineFormats",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 8000, unicode: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Users",
@@ -100,10 +112,12 @@ namespace mycantina.Migrations
         {
             DropForeignKey("dbo.User_Bottle", "UserId", "dbo.Users");
             DropForeignKey("dbo.Reviews", "UserId", "dbo.Users");
+            DropForeignKey("dbo.User_Bottle", "WineFormatId", "dbo.WineFormats");
             DropForeignKey("dbo.User_Bottle", "BottleId", "dbo.Bottles");
             DropForeignKey("dbo.Reviews", "BottleId", "dbo.Bottles");
             DropForeignKey("dbo.GrapeVariety_Bottle", "GrapeVarietyId", "dbo.GrapeVarieties");
             DropForeignKey("dbo.GrapeVariety_Bottle", "BottleId", "dbo.Bottles");
+            DropIndex("dbo.User_Bottle", new[] { "WineFormatId" });
             DropIndex("dbo.User_Bottle", new[] { "BottleId" });
             DropIndex("dbo.User_Bottle", new[] { "UserId" });
             DropIndex("dbo.Reviews", new[] { "BottleId" });
@@ -111,6 +125,7 @@ namespace mycantina.Migrations
             DropIndex("dbo.GrapeVariety_Bottle", new[] { "BottleId" });
             DropIndex("dbo.GrapeVariety_Bottle", new[] { "GrapeVarietyId" });
             DropTable("dbo.Users");
+            DropTable("dbo.WineFormats");
             DropTable("dbo.User_Bottle");
             DropTable("dbo.Reviews");
             DropTable("dbo.GrapeVarieties");

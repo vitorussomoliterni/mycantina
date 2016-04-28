@@ -16,6 +16,7 @@ namespace mycantina.DataAccess.Models
         public DbSet<Review> Reviews { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<User_Bottle> User_Bottles { get; set; }
+        public DbSet<WineFormat> WineFormats { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -25,6 +26,7 @@ namespace mycantina.DataAccess.Models
             modelBuilder.Configurations.Add(new ReviewMap());
             modelBuilder.Configurations.Add(new User_BottleMap());
             modelBuilder.Configurations.Add(new UserMap());
+            modelBuilder.Configurations.Add(new WineFormatMap());
 
             base.OnModelCreating(modelBuilder);
         }

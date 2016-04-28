@@ -11,18 +11,21 @@ namespace mycantina.DataAccess.Models.Mapping
     {
         public User_BottleMap()
         {
+            this.Property(p => p.UserId)
+                .IsRequired();
+
+            this.Property(p => p.BottleId)
+                .IsRequired();
+
+            this.Property(p => p.WineFormatId)
+                .IsRequired();
+
             this.Property(p => p.Owned)
                 .HasColumnType("bit")
                 .IsRequired();
 
             this.Property(p => p.PricePaid)
                 .HasColumnType("money");
-
-            this.Property(p => p.ByTheGlass)
-                .HasColumnType("bit")
-                .IsRequired();
-
-            this.HasKey(k => new { k.UserId, k.BottleId });
         }
     }
 }

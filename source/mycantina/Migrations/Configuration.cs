@@ -42,6 +42,7 @@ namespace mycantina.Migrations
                 new GrapeVariety { Name = "Negroamaro" },
                 new GrapeVariety { Name = "Nero D'Avola" },
                 new GrapeVariety { Name = "Pinotage" },
+                new GrapeVariety { Name = "Primitivo" },
                 new GrapeVariety { Name = "Sangiovese" },
                 new GrapeVariety { Name = "Chianti" },
                 new GrapeVariety { Name = "Shiraz" },
@@ -63,6 +64,14 @@ namespace mycantina.Migrations
                 new GrapeVariety { Name = "Sémillon" },
                 new GrapeVariety { Name = "Trebbiano" },
                 new GrapeVariety { Name = "Verdelho" }
+                );
+
+            context.WineFormats.AddOrUpdate(
+                w => w.Name,
+                new WineFormat { Name = "Bottle" },
+                new WineFormat { Name = "By the glass" },
+                new WineFormat { Name = "Other" },
+                new WineFormat { Name = "Undefined" }
                 );
         }
     }

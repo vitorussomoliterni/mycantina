@@ -18,8 +18,7 @@ namespace mycantina.DataAccess.Models.Mapping
 
             this.Property(p => p.Region)
                 .HasColumnType("nvarchar")
-                .HasMaxLength(100)
-                .IsRequired();
+                .HasMaxLength(100);
 
             this.Property(p => p.Country)
                 .HasColumnType("varchar")

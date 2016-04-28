@@ -58,27 +58,29 @@
     <Compile Include="DataAccess\Models\Mapping\ReviewMap.cs" />
     <Compile Include="DataAccess\Models\Mapping\UserMap.cs" />
     <Compile Include="DataAccess\Models\Mapping\User_BottleMap.cs" />
+    <Compile Include="DataAccess\Models\Mapping\WineFormatMap.cs" />
     <Compile Include="DataAccess\Models\MyCantinaDbContext.cs" />
     <Compile Include="DataAccess\Models\Review.cs" />
     <Compile Include="DataAccess\Models\User.cs" />
     <Compile Include="DataAccess\Models\User_Bottle.cs" />
-    <Compile Include="Migrations\201604270251291_InitialCreate.cs" />
-    <Compile Include="Migrations\201604270251291_InitialCreate.Designer.cs">
-      <DependentUpon>201604270251291_InitialCreate.cs</DependentUpon>
+    <Compile Include="DataAccess\Models\WineFormat.cs" />
+    <Compile Include="Migrations\201604280535372_InitialCreate.cs" />
+    <Compile Include="Migrations\201604280535372_InitialCreate.Designer.cs">
+      <DependentUpon>201604280535372_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BottleApplicationService.cs" />
+    <Compile Include="Services\UserApplicationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604270251291_InitialCreate.resx">
-      <DependentUpon>201604270251291_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604280535372_InitialCreate.resx">
+      <DependentUpon>201604280535372_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
