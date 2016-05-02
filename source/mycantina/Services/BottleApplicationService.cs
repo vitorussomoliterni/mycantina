@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace mycantina.Services
 {
-    class BottleApplicationService
+    public class BottleApplicationService
     {
-        MyCantinaDbContext _context;
+        private MyCantinaDbContext _context;
 
         public BottleApplicationService(MyCantinaDbContext context)
         {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace mycantina.DataAccess.Models
 {
-    class MyCantinaDbContext : DbContext
+    public class MyCantinaDbContext : DbContext
     {
         public DbSet<Bottle> Bottles { get; set; }
         public DbSet<GrapeVariety> GrapeVarieties { get; set; }

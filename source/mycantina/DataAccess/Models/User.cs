@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace mycantina.DataAccess.Models
 {
-    class User
+    public class User
     {
         public User()
         {
