@@ -47,7 +47,7 @@ namespace mycantina.Services
 
             user_bottle.DateAcquired = dateAcquired;
             user_bottle.DateOpened = dateOpened;
-            if (dateOpened != null)
+            if (dateOpened != null) // If a user updates the bottle to signify that it was drank, the QtyOwned will be updated
             {
                 user_bottle.QtyOwned--;
             }
