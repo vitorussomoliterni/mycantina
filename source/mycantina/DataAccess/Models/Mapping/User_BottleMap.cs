@@ -11,12 +11,6 @@ namespace mycantina.DataAccess.Models.Mapping
     {
         public User_BottleMap()
         {
-            this.Property(p => p.UserId)
-                .IsRequired();
-
-            this.Property(p => p.BottleId)
-                .IsRequired();
-
             this.Property(p => p.WineFormatId)
                 .IsRequired();
 

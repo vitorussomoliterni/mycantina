@@ -21,6 +21,7 @@ namespace mycantina.DataAccess.Models
         public string Description { get; set; }
         public decimal MinPrice { get; set; }
         public decimal MaxPrice { get; set; }
+        public string GrapeVariety { get; set; }
         public List<User_Bottle> User_Bottles { get; set; }
         public List<Review> Reviews { get; set; }
         public List<GrapeVariety_Bottle> GrapeVariety_Bottles { get; set; }

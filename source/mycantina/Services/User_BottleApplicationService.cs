@@ -16,12 +16,10 @@ namespace mycantina.Services
             _context = context;
         }
 
-        public User_Bottle AddUser_Bottle(int userId, int bottleId, DateTime? dateAcquired, DateTime? dateOpened, int qtyOwned, bool owned, decimal pricePaid, int wineFormatId)
+        public User_Bottle AddUser_Bottle(DateTime? dateAcquired, DateTime? dateOpened, int qtyOwned, bool owned, decimal pricePaid, int wineFormatId)
         {
             var user_bottle = new User_Bottle()
             {
-                UserId = userId,
-                BottleId = bottleId,
                 DateAcquired = dateAcquired,
                 DateOpened = dateOpened,
                 QtyOwned = qtyOwned,
