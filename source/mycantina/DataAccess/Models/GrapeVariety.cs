@@ -7,10 +7,10 @@ namespace mycantina.DataAccess.Models
     {
         public GrapeVariety()
         {
-            GrapeVariety_Bottles = new List<GrapeVariety_Bottle>();
+            GrapeVarietyBottles = new List<GrapeVarietyBottle>();
         }
         public int Id { get; set; }
         public String Name { get; set; }
-        public List<GrapeVariety_Bottle> GrapeVariety_Bottles { get; set; }
+        public List<GrapeVarietyBottle> GrapeVarietyBottles { get; set; }
     }
 }

@@ -51,18 +51,18 @@
   <ItemGroup>
     <Compile Include="DataAccess\Models\Bottle.cs" />
     <Compile Include="DataAccess\Models\GrapeVariety.cs" />
-    <Compile Include="DataAccess\Models\GrapeVariety_Bottle.cs" />
+    <Compile Include="DataAccess\Models\GrapeVarietyBottle.cs" />
     <Compile Include="DataAccess\Models\Mapping\BottleMap.cs" />
     <Compile Include="DataAccess\Models\Mapping\GrapeVarietyMap.cs" />
-    <Compile Include="DataAccess\Models\Mapping\GrapeVariety_BottleMap.cs" />
+    <Compile Include="DataAccess\Models\Mapping\GrapeVarietyBottleMap.cs" />
     <Compile Include="DataAccess\Models\Mapping\ReviewMap.cs" />
-    <Compile Include="DataAccess\Models\Mapping\UserMap.cs" />
-    <Compile Include="DataAccess\Models\Mapping\User_BottleMap.cs" />
+    <Compile Include="DataAccess\Models\Mapping\ConsumerMap.cs" />
+    <Compile Include="DataAccess\Models\Mapping\ConsumerBottleMap.cs" />
     <Compile Include="DataAccess\Models\Mapping\WineFormatMap.cs" />
     <Compile Include="DataAccess\Models\MyCantinaDbContext.cs" />
     <Compile Include="DataAccess\Models\Review.cs" />
-    <Compile Include="DataAccess\Models\User.cs" />
-    <Compile Include="DataAccess\Models\User_Bottle.cs" />
+    <Compile Include="DataAccess\Models\Consumer.cs" />
+    <Compile Include="DataAccess\Models\ConsumerBottle.cs" />
     <Compile Include="DataAccess\Models\WineFormat.cs" />
     <Compile Include="Migrations\201604280535372_InitialCreate.cs" />
     <Compile Include="Migrations\201604280535372_InitialCreate.Designer.cs">
@@ -76,8 +76,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BottleApplicationService.cs" />
     <Compile Include="Services\ReviewApplicationService.cs" />
-    <Compile Include="Services\UserApplicationService.cs" />
-    <Compile Include="Services\User_BottleApplicationService.cs" />
+    <Compile Include="Services\ConsumerApplicationService.cs" />
+    <Compile Include="Services\ConsumerBottleApplicationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

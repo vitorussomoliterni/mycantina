@@ -4,11 +4,10 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace mycantina.UI.ViewModels.User
+namespace mycantina.UI.ViewModels.Consumer
 {
-    public class UserEditViewModel
+    public class ConsumerCreateViewModel
     {
-        public int Id { get; set; }
         [Required]
         [Display(Name = "First Name")]
         public String FirstName { get; set; }

@@ -140,14 +140,14 @@
     <Compile Include="ViewModels\Review\ReviewCreateViewModel.cs" />
     <Compile Include="ViewModels\Review\ReviewDetailsViewModel.cs" />
     <Compile Include="ViewModels\Review\ReviewEditViewModel.cs" />
-    <Compile Include="ViewModels\User\UserCreateViewModel.cs" />
-    <Compile Include="ViewModels\User\UserDetailsViewModel.cs" />
-    <Compile Include="ViewModels\User\UserEditViewModel.cs" />
-    <Compile Include="ViewModels\User\UserIndexViewModel.cs" />
-    <Compile Include="ViewModels\User_Bottle\User_BottleCreateViewModel.cs" />
-    <Compile Include="ViewModels\User_Bottle\User_BottleDetailsViewModel.cs" />
-    <Compile Include="ViewModels\User_Bottle\User_BottleEditViewModel.cs" />
-    <Compile Include="ViewModels\User_Bottle\User_BottleIndexViewModel.cs" />
+    <Compile Include="ViewModels\Consumer\ConsumerCreateViewModel.cs" />
+    <Compile Include="ViewModels\Consumer\ConsumerDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Consumer\ConsumerEditViewModel.cs" />
+    <Compile Include="ViewModels\Consumer\ConsumerIndexViewModel.cs" />
+    <Compile Include="ViewModels\ConsumerBottle\ConsumerBottleCreateViewModel.cs" />
+    <Compile Include="ViewModels\ConsumerBottle\ConsumerBottleDetailsViewModel.cs" />
+    <Compile Include="ViewModels\ConsumerBottle\ConsumerBottleEditViewModel.cs" />
+    <Compile Include="ViewModels\ConsumerBottle\ConsumerBottleIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

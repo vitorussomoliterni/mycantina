@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace mycantina.DataAccess.Models.Mapping
 {
-    class User_BottleMap : EntityTypeConfiguration<User_Bottle>
+    class ConsumerBottleMap : EntityTypeConfiguration<ConsumerBottle>
     {
-        public User_BottleMap()
+        public ConsumerBottleMap()
         {
             this.Property(p => p.WineFormatId)
                 .IsRequired();

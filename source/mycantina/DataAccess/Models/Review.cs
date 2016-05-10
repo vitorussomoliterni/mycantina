@@ -4,7 +4,7 @@ namespace mycantina.DataAccess.Models
 {
     public class Review
     {
-        public int UserId { get; set; }
+        public int ConsumerId { get; set; }
         public int BottleId { get; set; }
         public string Text { get; set; }
         public int Rating { get; set; }

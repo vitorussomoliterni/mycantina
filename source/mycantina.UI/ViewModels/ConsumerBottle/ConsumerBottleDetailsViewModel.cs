@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace mycantina.UI.ViewModels.User_Bottle
+namespace mycantina.UI.ViewModels.ConsumerBottle
 {
-    public class User_BottleDetailsViewModel
+    public class ConsumerBottleDetailsViewModel
     {
         public int Id { get; set; }
         [Display(Name = "Format")]

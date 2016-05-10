@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace mycantina.DataAccess.Models.Mapping
 {
-    class UserMap : EntityTypeConfiguration<User>
+    class ConsumerMap : EntityTypeConfiguration<Consumer>
     {
-        public UserMap()
+        public ConsumerMap()
         {
             this.Property(p => p.FirstName)
                 .HasColumnType("varchar")

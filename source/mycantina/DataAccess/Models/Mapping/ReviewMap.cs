@@ -20,7 +20,7 @@ namespace mycantina.DataAccess.Models.Mapping
             this.Property(p => p.DatePosted)
                 .IsRequired();
 
-            this.HasKey(k => new { k.UserId, k.BottleId }); // Composite Key
+            this.HasKey(k => new { k.ConsumerId, k.BottleId }); // Composite Key
         }
     }
 }

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace mycantina.DataAccess.Models
 {
-    public class User
+    public class Consumer
     {
-        public User()
+        public Consumer()
         {
             Reviews = new List<Review>();
-            User_Bottles = new List<User_Bottle>();
+            ConsumerBottle = new List<ConsumerBottle>();
         }
         public int Id { get; set; }
         public String FirstName { get; set; }
@@ -19,7 +19,7 @@ namespace mycantina.DataAccess.Models
         public String LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Email { get; set; }
-        public List<User_Bottle> User_Bottles { get; set; }
+        public List<ConsumerBottle> ConsumerBottle { get; set; }
         public List<Review> Reviews { get; set; }
     }
 }

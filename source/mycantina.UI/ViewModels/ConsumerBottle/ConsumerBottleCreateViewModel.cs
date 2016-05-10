@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
-namespace mycantina.UI.ViewModels.User_Bottle
+namespace mycantina.UI.ViewModels.ConsumerBottle
 {
-    public class User_BottleIndexViewModel
+    public class ConsumerBottleCreateViewModel
     {
-        public int Id { get; set; }
-        [ScaffoldColumn(false)]
-        public int UserId { get; set; }
-        [Display(Name = "Bottle Name")]
-        public string WineName { get; set; }
+        [Required]
         [Display(Name = "Format")]
         public string WineFormat { get; set; }
+        public SelectList WineFormats { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? DateAcquired { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? DateOpened { get; set; }
         [Display(Name = "Quantity")]
         public int QtyOwned { get; set; }
-        [Display(Name = "In your collection")]
+        [Required]
+        [Display(Name = "Is it in your collection?")]
         public Boolean Owned { get; set; }
         [Display(Name = "Price Paid")]
         public decimal PricePaid { get; set; }

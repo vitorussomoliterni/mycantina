@@ -7,6 +7,6 @@ namespace mycantina.DataAccess.Models
     {
         public int Id { get; set; }
         public String Name { get; set; }
-        public List<User_Bottle> User_Bottles { get; set; }
+        public List<ConsumerBottle> ConsumerBottles { get; set; }
     }
 }

@@ -5,10 +5,11 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace mycantina.UI.ViewModels.User_Bottle
+namespace mycantina.UI.ViewModels.ConsumerBottle
 {
-    public class User_BottleCreateViewModel
+    public class ConsumerBottleEditViewModel
     {
+        public int Id { get; set; }
         [Required]
         [Display(Name = "Format")]
         public string WineFormat { get; set; }

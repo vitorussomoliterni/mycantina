@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace mycantina.DataAccess.Models.Mapping
 {
-    class GrapeVariety_BottleMap : EntityTypeConfiguration<GrapeVariety_Bottle>
+    class GrapeVarietyBottleMap : EntityTypeConfiguration<GrapeVarietyBottle>
     {
-        public GrapeVariety_BottleMap()
+        public GrapeVarietyBottleMap()
         {
             this.HasKey(k => new { k.GrapeVarietyId, k.BottleId });
         }

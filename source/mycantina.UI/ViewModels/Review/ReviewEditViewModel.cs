@@ -9,7 +9,7 @@ namespace mycantina.UI.ViewModels.Review
     public class ReviewEditViewModel
     {
         [ScaffoldColumn(false)]
-        public int UserId { get; set; }
+        public int ConsumerId { get; set; }
         [ScaffoldColumn(false)]
         public int BottleId { get; set; }
         [Display(Name = "Review")]

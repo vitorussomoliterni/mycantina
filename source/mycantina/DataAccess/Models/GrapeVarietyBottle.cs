@@ -1,6 +1,6 @@
 ﻿namespace mycantina.DataAccess.Models
 {
-    public class GrapeVariety_Bottle
+    public class GrapeVarietyBottle
     {
         public int GrapeVarietyId { get; set; }
         public int BottleId { get; set; }

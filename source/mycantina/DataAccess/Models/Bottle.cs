@@ -8,8 +8,8 @@ namespace mycantina.DataAccess.Models
         public Bottle()
         {
             Reviews = new List<Review>();
-            GrapeVariety_Bottles = new List<GrapeVariety_Bottle>();
-            User_Bottles = new List<User_Bottle>();
+            GrapeVarietyBottles = new List<GrapeVarietyBottle>();
+            ConsumerBottle = new List<ConsumerBottle>();
         }
         public int Id { get; set; }
         public String Name { get; set; }
@@ -22,8 +22,8 @@ namespace mycantina.DataAccess.Models
         public decimal MinPrice { get; set; }
         public decimal MaxPrice { get; set; }
         public string GrapeVariety { get; set; }
-        public List<User_Bottle> User_Bottles { get; set; }
+        public List<ConsumerBottle> ConsumerBottle { get; set; }
         public List<Review> Reviews { get; set; }
-        public List<GrapeVariety_Bottle> GrapeVariety_Bottles { get; set; }
+        public List<GrapeVarietyBottle> GrapeVarietyBottles { get; set; }
     }
 }

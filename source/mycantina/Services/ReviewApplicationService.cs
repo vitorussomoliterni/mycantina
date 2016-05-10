@@ -16,21 +16,21 @@ namespace mycantina.Services
             _context = context;
         }
 
-        public Review AddReview(int userId, int bottleId, string text, int rating)
+        public Review AddReview(int consumerId, int bottleId, string text, int rating)
         {
             var review = new Review()
             {
-                UserId = userId,
+                ConsumerId = consumerId,
                 BottleId = bottleId,
                 Text = text,
                 Rating = rating,
                 DatePosted = DateTime.Now
             };
 
-            var user = _context.Users.Find(userId);
+            var consumer = _context.Consumers.Find(consumerId);
             var bottle = _context.Bottles.Find(bottleId);
 
-            user.Reviews.Add(review);
+            consumer.Reviews.Add(review);
             bottle.Reviews.Add(review);
 
             _context.Reviews.Add(review);
@@ -39,9 +39,9 @@ namespace mycantina.Services
             return review;
         }
 
-        public Review UpdateReview(int userId, int bottleId, string text, int rating)
+        public Review UpdateReview(int consumerId, int bottleId, string text, int rating)
         {
-            var review = _context.Reviews.FirstOrDefault(r => r.UserId == userId && r.BottleId == bottleId);
+            var review = _context.Reviews.FirstOrDefault(r => r.ConsumerId == consumerId && r.BottleId == bottleId);
 
             if (review == null)
             {
@@ -57,9 +57,9 @@ namespace mycantina.Services
             return review;
         }
 
-        public void RemoveReview(int userId, int bottleId)
+        public void RemoveReview(int consumerId, int bottleId)
         {
-            var review = _context.Reviews.FirstOrDefault(r => r.UserId == userId && r.BottleId == bottleId);
+            var review = _context.Reviews.FirstOrDefault(r => r.ConsumerId == consumerId && r.BottleId == bottleId);
 
             if (review == null)
             {

@@ -32,7 +32,7 @@ namespace mycantina.Services
 
             var grapeVariety = _context.GrapeVarieties.Find(grapeVarietyId);
 
-            var grapeVariety_Bottle = new GrapeVariety_Bottle
+            var grapeVariety_Bottle = new GrapeVarietyBottle
             {
                 BottleId = bottle.Id,
                 GrapeVarietyId = grapeVarietyId,
@@ -40,9 +40,9 @@ namespace mycantina.Services
                 GrapeVariety = grapeVariety
             };
 
-            bottle.GrapeVariety_Bottles.Add(grapeVariety_Bottle);
+            bottle.GrapeVarietyBottles.Add(grapeVariety_Bottle);
 
-            _context.GrapeVariety_Bottles.Add(grapeVariety_Bottle);
+            _context.GrapeVarietyBottles.Add(grapeVariety_Bottle);
             _context.Bottles.Add(bottle);
             _context.SaveChanges();
 
