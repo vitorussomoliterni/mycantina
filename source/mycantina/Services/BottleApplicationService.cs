@@ -16,7 +16,7 @@ namespace mycantina.Services
             _context = context;
         }
 
-        public Bottle AddBottle(string name, string region, string country, string type, DateTime year, string producer, string description, decimal minPrice, decimal maxPrice, int grapeVarietyId)
+        public Bottle AddBottle(string name, string region, string country, string type, DateTime year, string producer, string description, int grapeVarietyId)
         {
             var bottle = new Bottle()
             {
@@ -25,14 +25,12 @@ namespace mycantina.Services
                 Country = country,
                 Type = type,
                 Year = year,
-                Producer = producer,
-                MinPrice = minPrice,
-                MaxPrice = maxPrice
+                Producer = producer
             };
 
             var grapeVariety = _context.GrapeVarieties.Find(grapeVarietyId);
 
-            var grapeVariety_Bottle = new GrapeVarietyBottle
+            var grapeVarietyBottle = new GrapeVarietyBottle
             {
                 BottleId = bottle.Id,
                 GrapeVarietyId = grapeVarietyId,
@@ -40,16 +38,16 @@ namespace mycantina.Services
                 GrapeVariety = grapeVariety
             };
 
-            bottle.GrapeVarietyBottles.Add(grapeVariety_Bottle);
+            bottle.GrapeVarietyBottles.Add(grapeVarietyBottle);
 
-            _context.GrapeVarietyBottles.Add(grapeVariety_Bottle);
+            _context.GrapeVarietyBottles.Add(grapeVarietyBottle);
             _context.Bottles.Add(bottle);
             _context.SaveChanges();
 
             return bottle;
         }
 
-        public Bottle UpdateBottle(int id, decimal minPrice, decimal maxPrice)
+        public Bottle UpdateBottle(int id, string name, string region, string country, string type, DateTime year, string producer, string description, int grapeVarietyId)
         {
             var bottle = _context.Bottles.Find(id);
 
@@ -58,8 +56,14 @@ namespace mycantina.Services
                 throw new InvalidOperationException("No bottle found for the provided id.");
             }
 
-            bottle.MinPrice = minPrice;
-            bottle.MaxPrice = maxPrice;
+            bottle.Name = name;
+            bottle.Region = region;
+            bottle.Country = country;
+            bottle.Type = type;
+            bottle.Year = year;
+            bottle.Producer = producer;
+            bottle.Description = description;
+            bottle.GrapeVarietyId = grapeVarietyId;
 
             _context.SaveChanges();
 

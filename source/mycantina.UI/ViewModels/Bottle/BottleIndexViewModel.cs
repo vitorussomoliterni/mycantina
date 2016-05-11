@@ -17,6 +17,7 @@ namespace mycantina.UI.ViewModels.Bottle
         public String Type { get; set; }
         public DateTime Year { get; set; }
         public String Producer { get; set; }
+        [Display(Name = "Average Price")]
         public decimal AvgPrice { get; set; }
     }
 }

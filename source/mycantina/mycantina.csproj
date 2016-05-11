@@ -64,13 +64,9 @@
     <Compile Include="DataAccess\Models\Consumer.cs" />
     <Compile Include="DataAccess\Models\ConsumerBottle.cs" />
     <Compile Include="DataAccess\Models\WineFormat.cs" />
-    <Compile Include="Migrations\201604280535372_InitialCreate.cs" />
-    <Compile Include="Migrations\201604280535372_InitialCreate.Designer.cs">
-      <DependentUpon>201604280535372_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604280643129_DateModifiedReviewAdded.cs" />
-    <Compile Include="Migrations\201604280643129_DateModifiedReviewAdded.Designer.cs">
-      <DependentUpon>201604280643129_DateModifiedReviewAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201605110004185_InitialCreate.cs" />
+    <Compile Include="Migrations\201605110004185_InitialCreate.Designer.cs">
+      <DependentUpon>201605110004185_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,13 +79,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604280535372_InitialCreate.resx">
-      <DependentUpon>201604280535372_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604280643129_DateModifiedReviewAdded.resx">
-      <DependentUpon>201604280643129_DateModifiedReviewAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605110004185_InitialCreate.resx">
+      <DependentUpon>201605110004185_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

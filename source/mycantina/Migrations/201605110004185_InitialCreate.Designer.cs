@@ -7,13 +7,13 @@ namespace mycantina.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class DateModifiedReviewAdded : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DateModifiedReviewAdded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201604280643129_DateModifiedReviewAdded"; }
+            get { return "201605110004185_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
