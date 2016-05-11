@@ -20,13 +20,11 @@ namespace mycantina.UI.Controllers
                 "South Australia",
                 "Tuscany"
             };
-
         private List<string> countriesList = new List<string>()
             {
                 "Australia",
                 "Italy"
             };
-
         private List<string> typesList = new List<string>()
             {
                 "Sparkling",
