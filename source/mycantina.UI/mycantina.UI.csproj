@@ -131,6 +131,7 @@
     <Compile Include="Controllers\BottleController.cs" />
     <Compile Include="Controllers\ConsumerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -150,6 +151,7 @@
     <Compile Include="ViewModels\ConsumerBottle\ConsumerBottleDetailsViewModel.cs" />
     <Compile Include="ViewModels\ConsumerBottle\ConsumerBottleEditViewModel.cs" />
     <Compile Include="ViewModels\ConsumerBottle\ConsumerBottleIndexViewModel.cs" />
+    <Compile Include="ViewModels\Review\ReviewIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -192,6 +194,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Consumer\" />
+    <Folder Include="Views\Review\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

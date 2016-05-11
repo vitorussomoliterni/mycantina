@@ -60,7 +60,7 @@ namespace mycantina.UI.Controllers
             return View(model);
         }
 
-        // GET Bottle / Create
+        // GET: Bottle / Create
         public ActionResult Create()
         {
             var model = new BottleCreateViewModel();
@@ -75,7 +75,7 @@ namespace mycantina.UI.Controllers
             return View(model);
         }
 
-        // POST Bottle / Create
+        // POST: Bottle / Create
         [HttpPost]
         public ActionResult Create(BottleCreateViewModel model)
         {
@@ -100,7 +100,7 @@ namespace mycantina.UI.Controllers
             return View(model);
         }
 
-        // GET Bottle / Edit
+        // GET: Bottle / Edit
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -136,7 +136,7 @@ namespace mycantina.UI.Controllers
             return View(model);
         }
 
-        // POST Bottle / Edit
+        // POST: Bottle / Edit
         [HttpPost]
         public ActionResult Edit(BottleEditViewModel model)
         {
@@ -161,7 +161,7 @@ namespace mycantina.UI.Controllers
             return View(model);
         }
 
-        // GET Bottle / Details
+        // GET: Bottle / Details
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -195,7 +195,7 @@ namespace mycantina.UI.Controllers
             return View(model);
         }
 
-        // GET Bottle / Delete
+        // GET: Bottle / Delete
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -229,7 +229,7 @@ namespace mycantina.UI.Controllers
             return View(model);
         }
 
-        // POST Bottle / Delete
+        // POST: Bottle / Delete
         [HttpPost]
         [ActionName("Delete")]
         public ActionResult DeleteConfirmed(int? id)
