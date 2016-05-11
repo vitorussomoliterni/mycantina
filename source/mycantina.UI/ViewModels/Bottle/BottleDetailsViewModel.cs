@@ -21,5 +21,7 @@ namespace mycantina.UI.ViewModels.Bottle
         [Display(Name = "Average Price")]
         public decimal AvgPrice { get; set; }
         public string Description { get; set; }
+
+        // TODO: Add reviews to this ViewModel
     }
 }

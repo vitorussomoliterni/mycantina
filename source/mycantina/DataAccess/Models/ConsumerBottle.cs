@@ -5,6 +5,8 @@ namespace mycantina.DataAccess.Models
     public class ConsumerBottle
     {
         public int Id { get; set; }
+        public int ConsumerId { get; set; }
+        public int BottleId { get; set; }
         public int WineFormatId { get; set; }
         public DateTime? DateAcquired { get; set; }
         public DateTime? DateOpened { get; set; }

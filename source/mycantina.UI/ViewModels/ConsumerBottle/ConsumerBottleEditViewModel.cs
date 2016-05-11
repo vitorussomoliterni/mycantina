@@ -12,7 +12,7 @@ namespace mycantina.UI.ViewModels.ConsumerBottle
         public int Id { get; set; }
         [Required]
         [Display(Name = "Format")]
-        public string WineFormat { get; set; }
+        public int WineFormatId { get; set; }
         public SelectList WineFormats { get; set; }
         [DataType(DataType.Date)]
         public DateTime? DateAcquired { get; set; }

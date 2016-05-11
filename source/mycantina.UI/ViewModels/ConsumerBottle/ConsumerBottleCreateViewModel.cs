@@ -9,9 +9,13 @@ namespace mycantina.UI.ViewModels.ConsumerBottle
 {
     public class ConsumerBottleCreateViewModel
     {
+        [ScaffoldColumn(false)]
+        public int ConsumerId { get; set; }
+        [ScaffoldColumn(false)]
+        public int BottleId { get; set; }
         [Required]
         [Display(Name = "Format")]
-        public string WineFormat { get; set; }
+        public int WineFormatId { get; set; }
         public SelectList WineFormats { get; set; }
         [DataType(DataType.Date)]
         public DateTime? DateAcquired { get; set; }
