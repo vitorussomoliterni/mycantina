@@ -190,6 +190,9 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Bottle\Index.cshtml" />
+    <Content Include="Views\Bottle\Create.cshtml" />
+    <Content Include="Views\Bottle\Edit.cshtml" />
+    <Content Include="Views\Bottle\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

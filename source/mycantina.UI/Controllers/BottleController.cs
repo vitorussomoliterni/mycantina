@@ -43,14 +43,13 @@ namespace mycantina.UI.Controllers
         // GET: Bottle / Index
         public ActionResult Index()
         {
-            var bottles = _context.Bottles.ToList();
-            var grapeVarietiesBottles = _context.GrapeVarietyBottles.ToList();
-            var model = _context.Bottles.Include(b => b.GrapeVarietyBottles).Select(b => new BottleIndexViewModel
+            var bottles = _context.Bottles.Include(b => b.GrapeVarietyBottles).ToList();
+            var model = _context.Bottles.Select(b => new BottleIndexViewModel
             {
                 Id = b.Id,
                 Name = b.Name,
                 Country = b.Country,
-                GrapeVariety = grapeVarietiesBottles.FirstOrDefault(g => g.BottleId == b.Id).GrapeVariety.Name,
+                GrapeVariety = b.GrapeVarietyBottles.FirstOrDefault(g => g.BottleId == b.Id).GrapeVariety.Name,
                 Type = b.Type,
                 Year = b.Year,
                 Producer = b.Producer,
@@ -64,9 +63,7 @@ namespace mycantina.UI.Controllers
         public ActionResult Create()
         {
             var model = new BottleCreateViewModel();
-
-
-
+            
             model.Regions = new SelectList(regionsList);
             model.Countries = new SelectList(countriesList);
             model.Types = new SelectList(typesList);
@@ -108,7 +105,7 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var bottle = _context.Bottles.Include(b => b.GrapeVarietyId).FirstOrDefault(b => b.Id == id);
+            var bottle = _context.Bottles.Include(b => b.GrapeVarietyBottles).FirstOrDefault(b => b.Id == id);
 
             if (bottle == null)
             {
@@ -151,6 +148,9 @@ namespace mycantina.UI.Controllers
                 {
                     ModelState.AddModelError("", ex);
                 }
+
+                //_bottleApplicationServie.UpdateBottle(model.Id, model.Name, model.Region, model.Country, model.Type, model.Year, model.Producer, model.Description, model.GrapeVarietyId);
+                //return RedirectToAction("Index");
             }
 
             model.Regions = new SelectList(regionsList, model.Region);
@@ -169,7 +169,7 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var bottle = _context.Bottles.Include(b => b.GrapeVarietyId).FirstOrDefault(b => b.Id == id);
+            var bottle = _context.Bottles.Include(b => b.GrapeVarietyBottles).FirstOrDefault(b => b.Id == id);
 
             if (bottle == null)
             {
@@ -184,7 +184,7 @@ namespace mycantina.UI.Controllers
                 Name = bottle.Name,
                 Country = bottle.Country,
                 Region = bottle.Region,
-                GrapeVariety = grapeVariety.Name,
+                GrapeVariety = bottle.GrapeVarietyBottles.FirstOrDefault(g => g.BottleId == bottle.Id).GrapeVariety.Name,
                 Type = bottle.Type,
                 Year = bottle.Year,
                 Producer = bottle.Producer,

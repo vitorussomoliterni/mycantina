@@ -18,17 +18,19 @@ namespace mycantina.Services
 
         public Bottle AddBottle(string name, string region, string country, string type, DateTime year, string producer, string description, int grapeVarietyId)
         {
+            var grapeVariety = _context.GrapeVarieties.Find(grapeVarietyId);
+
             var bottle = new Bottle()
             {
                 Name = name,
                 Region = region,
                 Country = country,
+                Description = description,
                 Type = type,
                 Year = year,
-                Producer = producer
+                Producer = producer,
+                GrapeVarietyId = grapeVariety.Id
             };
-
-            var grapeVariety = _context.GrapeVarieties.Find(grapeVarietyId);
 
             var grapeVarietyBottle = new GrapeVarietyBottle
             {
@@ -50,8 +52,9 @@ namespace mycantina.Services
         public Bottle UpdateBottle(int id, string name, string region, string country, string type, DateTime year, string producer, string description, int grapeVarietyId)
         {
             var bottle = _context.Bottles.Find(id);
+            var grapeVarietyBottle = _context.GrapeVarietyBottles.FirstOrDefault(g => g.GrapeVarietyId == bottle.GrapeVarietyId && g.BottleId == bottle.Id);
 
-            if (bottle == null)
+            if (bottle == null || grapeVarietyBottle == null)
             {
                 throw new InvalidOperationException("No bottle found for the provided id.");
             }
@@ -64,6 +67,9 @@ namespace mycantina.Services
             bottle.Producer = producer;
             bottle.Description = description;
             bottle.GrapeVarietyId = grapeVarietyId;
+            
+            grapeVarietyBottle.Bottle = bottle;
+            grapeVarietyBottle.GrapeVarietyId = bottle.GrapeVarietyId;
 
             _context.SaveChanges();
 
