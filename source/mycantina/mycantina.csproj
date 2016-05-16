@@ -50,31 +50,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\Models\Bottle.cs" />
+    <Compile Include="DataAccess\Models\Country.cs" />
     <Compile Include="DataAccess\Models\GrapeVariety.cs" />
     <Compile Include="DataAccess\Models\GrapeVarietyBottle.cs" />
     <Compile Include="DataAccess\Models\Mapping\BottleMap.cs" />
+    <Compile Include="DataAccess\Models\Mapping\CountryMap.cs" />
     <Compile Include="DataAccess\Models\Mapping\GrapeVarietyMap.cs" />
     <Compile Include="DataAccess\Models\Mapping\GrapeVarietyBottleMap.cs" />
+    <Compile Include="DataAccess\Models\Mapping\RegionMap.cs" />
     <Compile Include="DataAccess\Models\Mapping\ReviewMap.cs" />
     <Compile Include="DataAccess\Models\Mapping\ConsumerMap.cs" />
     <Compile Include="DataAccess\Models\Mapping\ConsumerBottleMap.cs" />
     <Compile Include="DataAccess\Models\Mapping\WineFormatMap.cs" />
+    <Compile Include="DataAccess\Models\Mapping\WineTypeMap.cs" />
     <Compile Include="DataAccess\Models\MyCantinaDbContext.cs" />
+    <Compile Include="DataAccess\Models\Region.cs" />
     <Compile Include="DataAccess\Models\Review.cs" />
     <Compile Include="DataAccess\Models\Consumer.cs" />
     <Compile Include="DataAccess\Models\ConsumerBottle.cs" />
     <Compile Include="DataAccess\Models\WineFormat.cs" />
-    <Compile Include="Migrations\201605110004185_InitialCreate.cs" />
-    <Compile Include="Migrations\201605110004185_InitialCreate.Designer.cs">
-      <DependentUpon>201605110004185_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605110431307_BottleEntityModified.cs" />
-    <Compile Include="Migrations\201605110431307_BottleEntityModified.Designer.cs">
-      <DependentUpon>201605110431307_BottleEntityModified.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605140135599_NewChanges.cs" />
-    <Compile Include="Migrations\201605140135599_NewChanges.Designer.cs">
-      <DependentUpon>201605140135599_NewChanges.cs</DependentUpon>
+    <Compile Include="DataAccess\Models\WineType.cs" />
+    <Compile Include="Migrations\201605160607376_InitialCreate.cs" />
+    <Compile Include="Migrations\201605160607376_InitialCreate.Designer.cs">
+      <DependentUpon>201605160607376_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,14 +86,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605110004185_InitialCreate.resx">
-      <DependentUpon>201605110004185_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605110431307_BottleEntityModified.resx">
-      <DependentUpon>201605110431307_BottleEntityModified.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605140135599_NewChanges.resx">
-      <DependentUpon>201605140135599_NewChanges.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605160607376_InitialCreate.resx">
+      <DependentUpon>201605160607376_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

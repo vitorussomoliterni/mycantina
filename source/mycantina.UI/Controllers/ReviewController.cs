@@ -159,10 +159,10 @@ namespace mycantina.UI.Controllers
                 ConsumerId = consumerId.Value,
                 BottleId = bottleId.Value,
                 BottleName = bottle.Name,
-                Country = bottle.Country,
-                Region = bottle.Region,
+                Country = bottle.Country.Name,
+                Region = bottle.Region.Name,
                 GrapeVariety = bottle.GrapeVarietyBottles.Find(g => g.GrapeVarietyId == bottle.GrapeVarietyId).GrapeVariety.Name,
-                Type = bottle.Type,
+                WineType = bottle.WineType.Name,
                 Year = bottle.Year,
                 Producer = bottle.Producer,
                 AvgPrice = (bottle.MinPrice + bottle.MaxPrice) / 2, // TODO: Fix this stuff

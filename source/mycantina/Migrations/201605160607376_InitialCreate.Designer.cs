@@ -7,13 +7,13 @@ namespace mycantina.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class BottleEntityModified : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(BottleEntityModified));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201605110431307_BottleEntityModified"; }
+            get { return "201605160607376_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

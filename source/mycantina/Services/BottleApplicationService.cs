@@ -16,17 +16,17 @@ namespace mycantina.Services
             _context = context;
         }
 
-        public Bottle AddBottle(string name, string region, string country, string type, DateTime year, string producer, string description, int grapeVarietyId)
+        public Bottle AddBottle(string name, int regionId, int countryId, int wineTypeId, int year, string producer, string description, int grapeVarietyId)
         {
             var grapeVariety = _context.GrapeVarieties.Find(grapeVarietyId);
 
             var bottle = new Bottle()
             {
                 Name = name,
-                Region = region,
-                Country = country,
+                RegionId = regionId,
+                CountryId = countryId,
                 Description = description,
-                Type = type,
+                WineTypeId = wineTypeId,
                 Year = year,
                 Producer = producer,
                 GrapeVarietyId = grapeVariety.Id
@@ -49,7 +49,7 @@ namespace mycantina.Services
             return bottle;
         }
 
-        public Bottle UpdateBottle(int id, string name, string region, string country, string type, DateTime year, string producer, string description, int grapeVarietyId)
+        public Bottle UpdateBottle(int id, string name, int regionId, int countryId, int wineTypeId, int year, string producer, string description, int grapeVarietyId)
         {
             var bottle = _context.Bottles.Find(id);
             var grapeVarietyBottle = _context.GrapeVarietyBottles.FirstOrDefault(g => g.GrapeVarietyId == bottle.GrapeVarietyId && g.BottleId == bottle.Id);
@@ -60,9 +60,9 @@ namespace mycantina.Services
             }
 
             bottle.Name = name;
-            bottle.Region = region;
-            bottle.Country = country;
-            bottle.Type = type;
+            bottle.RegionId = regionId;
+            bottle.CountryId = countryId;
+            bottle.WineTypeId = wineTypeId;
             bottle.Year = year;
             bottle.Producer = producer;
             bottle.Description = description;

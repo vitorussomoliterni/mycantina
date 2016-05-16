@@ -193,6 +193,7 @@
     <Content Include="Views\Bottle\Create.cshtml" />
     <Content Include="Views\Bottle\Edit.cshtml" />
     <Content Include="Views\Bottle\Details.cshtml" />
+    <Content Include="Views\Bottle\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

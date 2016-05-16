@@ -16,18 +16,10 @@ namespace mycantina.DataAccess.Models.Mapping
                 .HasMaxLength(100)
                 .IsRequired();
 
-            this.Property(p => p.Region)
-                .HasColumnType("nvarchar")
-                .HasMaxLength(100);
-
-            this.Property(p => p.Country)
-                .HasColumnType("varchar")
-                .HasMaxLength(50)
+            this.Property(p => p.CountryId)
                 .IsRequired();
 
-            this.Property(p => p.Type)
-                .HasColumnType("nvarchar")
-                .HasMaxLength(50)
+            this.Property(p => p.WineTypeId)
                 .IsRequired();
 
             this.Property(p => p.Year)

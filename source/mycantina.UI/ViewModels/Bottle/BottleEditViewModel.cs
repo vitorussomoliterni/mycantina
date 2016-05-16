@@ -13,19 +13,17 @@ namespace mycantina.UI.ViewModels.Bottle
         [Required]
         [Display(Name = "Bottle Name")]
         public string Name { get; set; }
-        public String Region { get; set; }
+        public int RegionId { get; set; }
         public SelectList Regions { get; set; }
         [Required]
-        public String Country { get; set; }
+        public int CountryId { get; set; }
         public SelectList Countries { get; set; }
         [Required]
         [Display(Name = "Wine Type")]
-        public String Type { get; set; }
-        public SelectList Types { get; set; }
+        public int WineTypeId { get; set; }
+        public SelectList WineTypes { get; set; }
         [Required]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy}")]
-        public DateTime Year { get; set; }
+        public int Year { get; set; }
         [Required]
         public String Producer { get; set; }
         public string Description { get; set; }

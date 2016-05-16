@@ -73,6 +73,35 @@ namespace mycantina.Migrations
                 new WineFormat { Name = "Other" },
                 new WineFormat { Name = "Undefined" }
                 );
+
+            context.WineTypes.AddOrUpdate(
+                w => w.Name,
+                new WineType { Name = "Red" },
+                new WineType { Name = "White" },
+                new WineType { Name = "Sparkling" },
+                new WineType { Name = "Rosé" }
+                );
+
+            context.Countries.AddOrUpdate(
+                c => c.Name,
+                new Country { Name = "Italy" },
+                new Country { Name = "Australia" },
+                new Country { Name = "France" },
+                new Country { Name = "Germany" },
+                new Country { Name = "USA" },
+                new Country { Name = "New Zealand" }
+                );
+
+            context.Regions.AddOrUpdate(
+                r => r.Name,
+                new Region { Name = "Tuscany", CountryId = 1 },
+                new Region { Name = "Basilicata", CountryId = 1 },
+                new Region { Name = "Puglia", CountryId = 1 },
+                new Region { Name = "Campania", CountryId = 1 },
+                new Region { Name = "Sicilia", CountryId = 1 },
+                new Region { Name = "Hunter Valley", CountryId = 2 },
+                new Region { Name = "Orange County", CountryId = 2 }
+                );
         }
     }
 }

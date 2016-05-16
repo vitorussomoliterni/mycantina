@@ -17,6 +17,9 @@ namespace mycantina.DataAccess.Models
         public DbSet<Consumer> Consumers { get; set; }
         public DbSet<ConsumerBottle> ConsumerBottles { get; set; }
         public DbSet<WineFormat> WineFormats { get; set; }
+        public DbSet<WineType> WineTypes { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Region> Regions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -27,6 +30,9 @@ namespace mycantina.DataAccess.Models
             modelBuilder.Configurations.Add(new ConsumerBottleMap());
             modelBuilder.Configurations.Add(new ConsumerMap());
             modelBuilder.Configurations.Add(new WineFormatMap());
+            modelBuilder.Configurations.Add(new WineTypeMap());
+            modelBuilder.Configurations.Add(new CountryMap());
+            modelBuilder.Configurations.Add(new RegionMap());
 
             base.OnModelCreating(modelBuilder);
         }

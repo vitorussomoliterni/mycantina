@@ -14,8 +14,8 @@ namespace mycantina.UI.ViewModels.Bottle
         [Display(Name = "Grape Variety")]
         public string GrapeVariety { get; set; }
         [Display(Name = "Wine Type")]
-        public String Type { get; set; }
-        public DateTime Year { get; set; }
+        public String WineType { get; set; }
+        public int Year { get; set; }
         public String Producer { get; set; }
         [Display(Name = "Average Price")]
         public decimal AvgPrice { get; set; }
