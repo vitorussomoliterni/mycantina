@@ -1,0 +1,57 @@
+﻿@model IEnumerable<mycantina.UI.ViewModels.ConsumerBottle.ConsumerBottleIndexViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add Bottle", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.WineName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WineFormat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QtyOwned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Owned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PricePaid)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.WineName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WineFormat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QtyOwned)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Owned)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PricePaid)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

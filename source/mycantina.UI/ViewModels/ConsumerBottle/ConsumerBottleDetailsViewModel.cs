@@ -9,6 +9,8 @@ namespace mycantina.UI.ViewModels.ConsumerBottle
     public class ConsumerBottleDetailsViewModel
     {
         public int Id { get; set; }
+        [ScaffoldColumn(false)]
+        public int ConsumerId { get; set; }
         [Display(Name = "Format")]
         public string WineFormat { get; set; }
         [DisplayFormat(DataFormatString = "{0:D}")]

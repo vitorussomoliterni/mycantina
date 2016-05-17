@@ -112,6 +112,7 @@ namespace mycantina.UI.Controllers
             var model = new ConsumerBottleEditViewModel()
             {
                 Id = ConsumerBottle.Id,
+                ConsumerId = ConsumerBottle.ConsumerId,
                 DateAcquired = ConsumerBottle.DateAcquired,
                 DateOpened = ConsumerBottle.DateOpened,
                 Owned = ConsumerBottle.Owned,
@@ -143,6 +144,113 @@ namespace mycantina.UI.Controllers
             }
 
             model.WineFormats = new SelectList(_context.WineFormats, "Id", "Name", model.WineFormatId);
+
+            return View(model);
+        }
+
+        // GET: ConsumerBottle / Details
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var consumerBottle = _context.ConsumerBottles.Include(c => c.WineFormat).FirstOrDefault(c => c.Id == id);
+
+            if (consumerBottle == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new ConsumerBottleDetailsViewModel()
+            {
+                Id = consumerBottle.Id,
+                ConsumerId = consumerBottle.ConsumerId,
+                DateAcquired = consumerBottle.DateAcquired,
+                DateOpened = consumerBottle.DateOpened,
+                Owned = consumerBottle.Owned,
+                PricePaid = consumerBottle.PricePaid,
+                QtyOwned = consumerBottle.QtyOwned,
+                WineFormat = consumerBottle.WineFormat.Name
+            };
+
+            return View(model);
+        }
+
+        // GET: ConsumerBottle / Delete
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var consumerBottle = _context.ConsumerBottles.Include(c => c.WineFormat).FirstOrDefault(c => c.Id == id);
+
+            if (consumerBottle == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new ConsumerBottleDetailsViewModel()
+            {
+                Id = consumerBottle.Id,
+                ConsumerId = consumerBottle.ConsumerId,
+                DateAcquired = consumerBottle.DateAcquired,
+                DateOpened = consumerBottle.DateOpened,
+                Owned = consumerBottle.Owned,
+                PricePaid = consumerBottle.PricePaid,
+                QtyOwned = consumerBottle.QtyOwned,
+                WineFormat = consumerBottle.WineFormat.Name
+            };
+
+            return View(model);
+        }
+
+        // POST: ConsumerBottle / Delete
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var consumerId = _context.ConsumerBottles.Find(id.Value).ConsumerId;
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _consumerBottleApplicationService.RemoveConsumerBottle(id.Value);
+                    return RedirectToAction("Index//{0}", consumerId);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex);
+                }
+            }
+
+            var consumerBottle = _context.ConsumerBottles.Include(c => c.WineFormat).FirstOrDefault(c => c.Id == id.Value);
+
+            if (consumerBottle == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new ConsumerBottleDetailsViewModel()
+            {
+                Id = consumerBottle.Id,
+                ConsumerId = consumerBottle.ConsumerId,
+                DateAcquired = consumerBottle.DateAcquired,
+                DateOpened = consumerBottle.DateOpened,
+                Owned = consumerBottle.Owned,
+                PricePaid = consumerBottle.PricePaid,
+                QtyOwned = consumerBottle.QtyOwned,
+                WineFormat = consumerBottle.WineFormat.Name
+            };
 
             return View(model);
         }

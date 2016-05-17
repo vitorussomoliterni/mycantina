@@ -1,0 +1,67 @@
+﻿@model mycantina.UI.ViewModels.ConsumerBottle.ConsumerBottleDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ConsumerBottleDetailsViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WineFormat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WineFormat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAcquired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAcquired)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOpened)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOpened)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QtyOwned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QtyOwned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Owned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PricePaid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PricePaid)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Go to Bottle", "Details", "Bottle", null , new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index/" + Model.ConsumerId)
+</p>

@@ -15,25 +15,7 @@ namespace mycantina.UI.Controllers
     {
         private MyCantinaDbContext _context;
         private BottleApplicationService _bottleApplicationServie;
-        //private List<string> regionsList = new List<string>()
-        //    {
-        //        "South Australia",
-        //        "Tuscany"
-        //    };
-        //private List<string> countriesList = new List<string>()
-        //    {
-        //        "Australia",
-        //        "Italy"
-        //    };
-        //private List<string> typesList = new List<string>()
-        //    {
-        //        "Sparkling",
-        //        "White",
-        //        "Red",
-        //        "Rosé",
-        //        "Sweet Wine"
-        //    };
-
+        
         public BottleController()
         {
             _context = new MyCantinaDbContext();

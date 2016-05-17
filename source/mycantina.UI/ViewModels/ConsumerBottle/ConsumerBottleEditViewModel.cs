@@ -10,6 +10,8 @@ namespace mycantina.UI.ViewModels.ConsumerBottle
     public class ConsumerBottleEditViewModel
     {
         public int Id { get; set; }
+        [ScaffoldColumn(false)]
+        public int ConsumerId { get; set; }
         [Required]
         [Display(Name = "Format")]
         public int WineFormatId { get; set; }

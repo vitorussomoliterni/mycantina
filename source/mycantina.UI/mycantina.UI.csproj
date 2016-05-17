@@ -194,12 +194,20 @@
     <Content Include="Views\Bottle\Edit.cshtml" />
     <Content Include="Views\Bottle\Details.cshtml" />
     <Content Include="Views\Bottle\Delete.cshtml" />
+    <Content Include="Views\Consumer\Index.cshtml" />
+    <Content Include="Views\Consumer\Create.cshtml" />
+    <Content Include="Views\Consumer\Edit.cshtml" />
+    <Content Include="Views\Consumer\Details.cshtml" />
+    <Content Include="Views\Consumer\Delete.cshtml" />
+    <Content Include="Views\ConsumerBottle\Index.cshtml" />
+    <Content Include="Views\ConsumerBottle\Create.cshtml" />
+    <Content Include="Views\ConsumerBottle\Edit.cshtml" />
+    <Content Include="Views\ConsumerBottle\Details.cshtml" />
+    <Content Include="Views\ConsumerBottle\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\ConsumerBottle\" />
-    <Folder Include="Views\Consumer\" />
     <Folder Include="Views\Review\" />
   </ItemGroup>
   <ItemGroup>
