@@ -4,21 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SharpRepository.Repository;
 
 namespace mycantina.Services
 {
     public class BottleApplicationService
     {
-        private MyCantinaDbContext _context;
+        private IRepository<Bottle> _bottleRepository;
+        private IRepository<GrapeVariety> _grapeVarietyRepository;
+        private IRepository<GrapeVarietyBottle> _grapeVarietyBottleRepository;
 
-        public BottleApplicationService(MyCantinaDbContext context)
+        public BottleApplicationService(IRepository<Bottle> bottleRepository, IRepository<GrapeVariety> grapeVarietyRepository, IRepository<GrapeVarietyBottle> grapeVarietyBottleRepository)
         {
-            _context = context;
+            _bottleRepository = bottleRepository;
+            _grapeVarietyRepository = grapeVarietyRepository;
+            _grapeVarietyBottleRepository = grapeVarietyBottleRepository;
         }
 
         public Bottle AddBottle(string name, int regionId, int wineTypeId, int year, string producer, string description, int grapeVarietyId)
         {
-            var grapeVariety = _context.GrapeVarieties.Find(grapeVarietyId);
+            var grapeVariety = _grapeVarietyRepository.Get(grapeVarietyId);
 
             var bottle = new Bottle()
             {
@@ -41,9 +46,8 @@ namespace mycantina.Services
 
             bottle.GrapeVarietyBottles.Add(grapeVarietyBottle);
 
-            _context.GrapeVarietyBottles.Add(grapeVarietyBottle);
-            _context.Bottles.Add(bottle);
-            _context.SaveChanges();
+            _grapeVarietyBottleRepository.Add(grapeVarietyBottle);
+            _bottleRepository.Add(bottle);
 
             return bottle;
         }
