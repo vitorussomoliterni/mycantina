@@ -57,6 +57,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SharpRepository.EfRepository, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpRepository.EfRepository.1.4.7.2\lib\net40\SharpRepository.EfRepository.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpRepository.Repository, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpRepository.Repository.1.4.7.2\lib\net40\SharpRepository.Repository.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -204,11 +212,15 @@
     <Content Include="Views\ConsumerBottle\Edit.cshtml" />
     <Content Include="Views\ConsumerBottle\Details.cshtml" />
     <Content Include="Views\ConsumerBottle\Delete.cshtml" />
+    <Content Include="Views\Review\Index.cshtml" />
+    <Content Include="Views\Review\Create.cshtml" />
+    <Content Include="Views\Review\Edit.cshtml" />
+    <Content Include="Views\Review\Details.cshtml" />
+    <Content Include="Views\Review\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Review\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

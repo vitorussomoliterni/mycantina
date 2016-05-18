@@ -4,16 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SharpRepository.Repository;
+
 
 namespace mycantina.Services
 {
     public class ReviewApplicationService
     {
-        private MyCantinaDbContext _context;
+        private IRepository<Review> _reviewRepository;
+        private IRepository<Consumer> _consumerRepository;
+        private IRepository<Bottle> _bottleRepository;
 
-        public ReviewApplicationService(MyCantinaDbContext context)
+        public ReviewApplicationService(IRepository<Review> reviewRepository, IRepository<Consumer> consumerRepository, IRepository<Bottle> bottleRepository)
         {
-            _context = context;
+            _reviewRepository = reviewRepository;
+            _consumerRepository = consumerRepository;
+            _bottleRepository = bottleRepository;
         }
 
         public Review AddReview(int consumerId, int bottleId, string text, int rating)
@@ -27,21 +33,23 @@ namespace mycantina.Services
                 DatePosted = DateTime.Now
             };
 
-            var consumer = _context.Consumers.Find(consumerId);
-            var bottle = _context.Bottles.Find(bottleId);
-
+            var consumer = _consumerRepository.Get(consumerId);
+            var bottle = _bottleRepository.Get(bottleId);
+            
             consumer.Reviews.Add(review);
+            review.Consumer = consumer;
+            
             bottle.Reviews.Add(review);
+            review.Bottle = bottle;
 
-            _context.Reviews.Add(review);
-            _context.SaveChanges();
+            _reviewRepository.Add(review);
 
             return review;
         }
 
         public Review UpdateReview(int consumerId, int bottleId, string text, int rating)
         {
-            var review = _context.Reviews.FirstOrDefault(r => r.ConsumerId == consumerId && r.BottleId == bottleId);
+            var review = _reviewRepository.Reviews.FirstOrDefault(r => r.ConsumerId == consumerId && r.BottleId == bottleId);
 
             if (review == null)
             {

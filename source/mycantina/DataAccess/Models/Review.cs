@@ -11,5 +11,6 @@ namespace mycantina.DataAccess.Models
         public DateTime DatePosted { get; set; }
         public DateTime? DateModified { get; set; }
         public Bottle Bottle { get; set; }
+        public Consumer Consumer { get; set; }
     }
 }

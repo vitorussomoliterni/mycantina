@@ -8,6 +8,7 @@ using mycantina.DataAccess.Models;
 using mycantina.Services;
 using System.Net;
 using mycantina.UI.ViewModels.Review;
+using SharpRepository.EfRepository;
 
 namespace mycantina.UI.Controllers
 {
@@ -15,11 +16,17 @@ namespace mycantina.UI.Controllers
     {
         private MyCantinaDbContext _context;
         private ReviewApplicationService _reviewApplicationService;
+        private EfRepository<Review> _reviewRepository;
+        private EfRepository<Consumer> _consumerRepository;
+        private EfRepository<Bottle> _bottleRepository;
 
         public ReviewController()
         {
             _context = new MyCantinaDbContext();
-            _reviewApplicationService = new ReviewApplicationService(_context);
+            _reviewRepository = new EfRepository<Review>(_context);
+            _consumerRepository = new EfRepository<Consumer>(_context);
+            _bottleRepository = new EfRepository<Bottle>(_context);
+            _reviewApplicationService = new ReviewApplicationService(_reviewRepository,_consumerRepository,_bottleRepository);
         }
 
         // GET: Review / Index
@@ -30,7 +37,12 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var reviews = _context.Reviews.Where(r => r.ConsumerId == consumerId).Include(r => r.Bottle).ToList();
+            var consumer = _consumerRepository.Find(r => r.Id == consumerId);
+
+            // TODO: Check consumer not null
+
+            var reviews = consumer.Reviews;
+            
             var model = reviews.Select(r => new ReviewIndexViewModel()
             {
                 ConsumerId = consumerId.Value,
