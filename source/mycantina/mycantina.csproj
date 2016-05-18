@@ -74,13 +74,14 @@
     <Compile Include="DataAccess\Models\ConsumerBottle.cs" />
     <Compile Include="DataAccess\Models\WineFormat.cs" />
     <Compile Include="DataAccess\Models\WineType.cs" />
-    <Compile Include="Migrations\201605160607376_InitialCreate.cs" />
-    <Compile Include="Migrations\201605160607376_InitialCreate.Designer.cs">
-      <DependentUpon>201605160607376_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201605180457024_InitialCreate.cs" />
+    <Compile Include="Migrations\201605180457024_InitialCreate.Designer.cs">
+      <DependentUpon>201605180457024_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BottleApplicationService.cs" />
+    <Compile Include="Services\GrapeVarietyBottleApplicationService.cs" />
     <Compile Include="Services\ReviewApplicationService.cs" />
     <Compile Include="Services\ConsumerApplicationService.cs" />
     <Compile Include="Services\ConsumerBottleApplicationService.cs" />
@@ -90,8 +91,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605160607376_InitialCreate.resx">
-      <DependentUpon>201605160607376_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605180457024_InitialCreate.resx">
+      <DependentUpon>201605180457024_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

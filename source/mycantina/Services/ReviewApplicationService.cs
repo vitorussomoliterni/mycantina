@@ -49,7 +49,7 @@ namespace mycantina.Services
 
         public Review UpdateReview(int consumerId, int bottleId, string text, int rating)
         {
-            var review = _reviewRepository.Reviews.FirstOrDefault(r => r.ConsumerId == consumerId && r.BottleId == bottleId);
+            var review = _reviewRepository.Find(r => r.ConsumerId == consumerId && r.BottleId == bottleId);
 
             if (review == null)
             {
@@ -60,22 +60,21 @@ namespace mycantina.Services
             review.Rating = rating;
             review.DateModified = DateTime.Now;
 
-            _context.SaveChanges();
+            _reviewRepository.Update(review);
 
             return review;
         }
 
         public void RemoveReview(int consumerId, int bottleId)
         {
-            var review = _context.Reviews.FirstOrDefault(r => r.ConsumerId == consumerId && r.BottleId == bottleId);
+            var review = _reviewRepository.Find(r => r.ConsumerId == consumerId && r.BottleId == bottleId);
 
             if (review == null)
             {
                 throw new InvalidOperationException("No review found for the provided parameters.");
             }
 
-            _context.Reviews.Remove(review);
-            _context.SaveChanges();
+            _reviewRepository.Delete(review);
         }
     }
 }

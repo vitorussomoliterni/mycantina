@@ -16,7 +16,7 @@ namespace mycantina.Services
             _context = context;
         }
 
-        public Bottle AddBottle(string name, int regionId, int countryId, int wineTypeId, int year, string producer, string description, int grapeVarietyId)
+        public Bottle AddBottle(string name, int regionId, int wineTypeId, int year, string producer, string description, int grapeVarietyId)
         {
             var grapeVariety = _context.GrapeVarieties.Find(grapeVarietyId);
 
@@ -24,7 +24,6 @@ namespace mycantina.Services
             {
                 Name = name,
                 RegionId = regionId,
-                CountryId = countryId,
                 Description = description,
                 WineTypeId = wineTypeId,
                 Year = year,
@@ -49,7 +48,7 @@ namespace mycantina.Services
             return bottle;
         }
 
-        public Bottle UpdateBottle(int id, string name, int regionId, int countryId, int wineTypeId, int year, string producer, string description, int grapeVarietyId)
+        public Bottle UpdateBottle(int id, string name, int regionId, int wineTypeId, int year, string producer, string description, int grapeVarietyId)
         {
             var bottle = _context.Bottles.Find(id);
             var grapeVarietyBottle = _context.GrapeVarietyBottles.FirstOrDefault(g => g.GrapeVarietyId == bottle.GrapeVarietyId && g.BottleId == bottle.Id);
@@ -61,7 +60,6 @@ namespace mycantina.Services
 
             bottle.Name = name;
             bottle.RegionId = regionId;
-            bottle.CountryId = countryId;
             bottle.WineTypeId = wineTypeId;
             bottle.Year = year;
             bottle.Producer = producer;

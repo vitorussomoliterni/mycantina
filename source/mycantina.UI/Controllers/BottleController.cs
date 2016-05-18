@@ -30,7 +30,6 @@ namespace mycantina.UI.Controllers
             {
                 Id = b.Id,
                 Name = b.Name,
-                Country = b.Country.Name,
                 GrapeVariety = b.GrapeVarietyBottles.FirstOrDefault(g => g.BottleId == b.Id).GrapeVariety.Name,
                 WineType = b.WineType.Name,
                 Year = b.Year,
@@ -47,7 +46,7 @@ namespace mycantina.UI.Controllers
             var model = new BottleCreateViewModel();
             
             model.Regions = new SelectList(_context.Regions, "Id", "Name");
-            model.Countries = new SelectList(_context.Countries, "Id", "Name");
+            //model.Countries = new SelectList(_context.Countries, "Id", "Name");
             model.WineTypes = new SelectList(_context.WineTypes, "Id", "Name");
             model.GrapeVarieties = new SelectList(_context.GrapeVarieties, "Id", "Name");
 
@@ -62,7 +61,7 @@ namespace mycantina.UI.Controllers
             {
                 try
                 {
-                    _bottleApplicationServie.AddBottle(model.Name, model.RegionId, model.CountryId, model.WineTypeId, model.Year, model.Producer, model.Description, model.GrapeVarietyId);
+                    _bottleApplicationServie.AddBottle(model.Name, model.RegionId, model.WineTypeId, model.Year, model.Producer, model.Description, model.GrapeVarietyId);
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -72,7 +71,7 @@ namespace mycantina.UI.Controllers
             }
 
             model.Regions = new SelectList(_context.Regions, "Id", "Name", model.RegionId);
-            model.Countries = new SelectList(_context.Countries, "Id", "Name", model.CountryId);
+            //model.Countries = new SelectList(_context.Countries, "Id", "Name", model.CountryId);
             model.WineTypes = new SelectList(_context.WineTypes, "Id", "Name", model.WineTypeId);
             model.GrapeVarieties = new SelectList(_context.GrapeVarieties, "Id", "Name", model.GrapeVarietyId);
 
@@ -99,7 +98,6 @@ namespace mycantina.UI.Controllers
                 Id = bottle.Id,
                 Name = bottle.Name,
                 RegionId = bottle.RegionId,
-                CountryId = bottle.CountryId,
                 WineTypeId = bottle.WineTypeId,
                 Year = bottle.Year,
                 Producer = bottle.Producer,
@@ -108,7 +106,7 @@ namespace mycantina.UI.Controllers
             };
 
             model.Regions = new SelectList(_context.Regions, "Id", "Name", model.RegionId);
-            model.Countries = new SelectList(_context.Countries, "Id", "Name", model.CountryId);
+            //model.Countries = new SelectList(_context.Countries, "Id", "Name", model.CountryId);
             model.WineTypes = new SelectList(_context.WineTypes, "Id", "Name", model.WineTypeId);
             model.GrapeVarieties = new SelectList(_context.GrapeVarieties, "Id", "Name", model.GrapeVarietyId);
 
@@ -123,7 +121,7 @@ namespace mycantina.UI.Controllers
             {
                 try
                 {
-                    _bottleApplicationServie.UpdateBottle(model.Id, model.Name, model.RegionId, model.CountryId, model.WineTypeId, model.Year, model.Producer, model.Description, model.GrapeVarietyId);
+                    _bottleApplicationServie.UpdateBottle(model.Id, model.Name, model.RegionId, model.WineTypeId, model.Year, model.Producer, model.Description, model.GrapeVarietyId);
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -136,7 +134,7 @@ namespace mycantina.UI.Controllers
             }
 
             model.Regions = new SelectList(_context.Regions, "Id", "Name", model.RegionId);
-            model.Countries = new SelectList(_context.Countries, "Id", "Name", model.CountryId);
+            //model.Countries = new SelectList(_context.Countries, "Id", "Name", model.CountryId);
             model.WineTypes = new SelectList(_context.WineTypes, "Id", "Name", model.WineTypeId);
             model.GrapeVarieties = new SelectList(_context.GrapeVarieties, "Id", "Name", model.GrapeVarietyId);
 
@@ -164,7 +162,7 @@ namespace mycantina.UI.Controllers
             {
                 Id = bottle.Id,
                 Name = bottle.Name,
-                Country = bottle.Country.Name,
+                //Country = bottle.Country.Name,
                 Region = bottle.Region.Name,
                 GrapeVariety = bottle.GrapeVarietyBottles.FirstOrDefault(g => g.BottleId == bottle.Id).GrapeVariety.Name,
                 WineType = bottle.WineType.Name,
@@ -197,7 +195,7 @@ namespace mycantina.UI.Controllers
             {
                 Id = bottle.Id,
                 Name = bottle.Name,
-                Country = bottle.Country.Name,
+                //Country = bottle.Country.Name,
                 Region = bottle.Region.Name,
                 GrapeVariety = grapeVariety.Name,
                 WineType = bottle.WineType.Name,
@@ -246,7 +244,7 @@ namespace mycantina.UI.Controllers
             {
                 Id = bottle.Id,
                 Name = bottle.Name,
-                Country = bottle.Country.Name,
+                //Country = bottle.Country.Name,
                 Region = bottle.Region.Name,
                 GrapeVariety = grapeVariety.Name,
                 WineType = bottle.WineType.Name,

@@ -19,6 +19,7 @@ namespace mycantina.UI.Controllers
         private EfRepository<Review> _reviewRepository;
         private EfRepository<Consumer> _consumerRepository;
         private EfRepository<Bottle> _bottleRepository;
+        private EfRepository<GrapeVarietyBottle> _grapeVarietyBottleRepository;
 
         public ReviewController()
         {
@@ -26,6 +27,7 @@ namespace mycantina.UI.Controllers
             _reviewRepository = new EfRepository<Review>(_context);
             _consumerRepository = new EfRepository<Consumer>(_context);
             _bottleRepository = new EfRepository<Bottle>(_context);
+            _grapeVarietyBottleRepository = new EfRepository<GrapeVarietyBottle>(_context);
             _reviewApplicationService = new ReviewApplicationService(_reviewRepository,_consumerRepository,_bottleRepository);
         }
 
@@ -39,7 +41,10 @@ namespace mycantina.UI.Controllers
 
             var consumer = _consumerRepository.Find(r => r.Id == consumerId);
 
-            // TODO: Check consumer not null
+            if (consumer == null)
+            {
+                return HttpNotFound();
+            }
 
             var reviews = consumer.Reviews;
             
@@ -64,8 +69,8 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumer = _context.Consumers.Find(consumerId.Value);
-            var bottle = _context.Bottles.Find(bottleId.Value);
+            var consumer = _consumerRepository.Get(consumerId.Value);
+            var bottle = _bottleRepository.Get(bottleId.Value);
 
             if (consumer == null || bottle == null)
             {
@@ -109,9 +114,9 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumer = _context.Consumers.Find(consumerId.Value);
-            var bottle = _context.Bottles.Find(bottleId.Value);
-            var review = _context.Reviews.FirstOrDefault(r => r.ConsumerId == consumerId.Value && r.BottleId == bottleId.Value);
+            var consumer = _consumerRepository.Get(consumerId.Value);
+            var bottle = _bottleRepository.Get(bottleId.Value);
+            var review = _reviewRepository.Find(r => r.ConsumerId == consumerId.Value && r.BottleId == bottleId.Value);
 
             if (consumer == null || bottle == null || review == null)
             {
@@ -157,9 +162,9 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumer = _context.Consumers.Find(consumerId.Value);
-            var bottle = _context.Bottles.Include(b => b.GrapeVarietyBottles).FirstOrDefault(b => b.Id == bottleId.Value);
-            var review = _context.Reviews.FirstOrDefault(r => r.ConsumerId == consumerId.Value && r.BottleId == bottleId.Value);
+            var consumer = _consumerRepository.Get(consumerId.Value);
+            var bottle = _bottleRepository.Get(bottleId.Value);
+            var review = _reviewRepository.Find(r => r.ConsumerId == consumerId.Value && r.BottleId == bottleId.Value);
 
             if (consumer == null || bottle == null || review == null)
             {
@@ -171,9 +176,8 @@ namespace mycantina.UI.Controllers
                 ConsumerId = consumerId.Value,
                 BottleId = bottleId.Value,
                 BottleName = bottle.Name,
-                Country = bottle.Country.Name,
+                //Country = bottle.Country.Name,
                 Region = bottle.Region.Name,
-                GrapeVariety = bottle.GrapeVarietyBottles.Find(g => g.GrapeVarietyId == bottle.GrapeVarietyId).GrapeVariety.Name,
                 WineType = bottle.WineType.Name,
                 Year = bottle.Year,
                 Producer = bottle.Producer,
@@ -196,9 +200,9 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumer = _context.Consumers.Find(consumerId.Value);
-            var bottle = _context.Bottles.Include(b => b.GrapeVarietyBottles).FirstOrDefault(b => b.Id == bottleId.Value);
-            var review = _context.Reviews.FirstOrDefault(r => r.ConsumerId == consumerId.Value && r.BottleId == bottleId.Value);
+            var consumer = _consumerRepository.Get(consumerId.Value);
+            var bottle = _bottleRepository.Get(bottleId.Value);
+            var review = _reviewRepository.Find(r => r.ConsumerId == consumerId.Value && r.BottleId == bottleId.Value);
 
             if (consumer == null || bottle == null || review == null)
             {
@@ -241,9 +245,9 @@ namespace mycantina.UI.Controllers
                 }
             }
 
-            var consumer = _context.Consumers.Find(consumerId.Value);
-            var bottle = _context.Bottles.Include(b => b.GrapeVarietyBottles).FirstOrDefault(b => b.Id == bottleId.Value);
-            var review = _context.Reviews.FirstOrDefault(r => r.ConsumerId == consumerId.Value && r.BottleId == bottleId.Value);
+            var consumer = _consumerRepository.Get(consumerId.Value);
+            var bottle = _bottleRepository.Get(bottleId.Value);
+            var review = _reviewRepository.Find(r => r.ConsumerId == consumerId.Value && r.BottleId == bottleId.Value);
 
             if (consumer == null || bottle == null || review == null)
             {

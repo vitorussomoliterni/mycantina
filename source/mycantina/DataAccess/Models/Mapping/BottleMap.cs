@@ -16,9 +16,6 @@ namespace mycantina.DataAccess.Models.Mapping
                 .HasMaxLength(100)
                 .IsRequired();
 
-            this.Property(p => p.CountryId)
-                .IsRequired();
-
             this.Property(p => p.WineTypeId)
                 .IsRequired();
 

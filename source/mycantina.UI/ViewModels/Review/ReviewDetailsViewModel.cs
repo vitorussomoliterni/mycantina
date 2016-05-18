@@ -16,8 +16,6 @@ namespace mycantina.UI.ViewModels.Review
         public string BottleName { get; set; }
         public String Country { get; set; }
         public String Region { get; set; }
-        [Display(Name = "Grape Variety")]
-        public string GrapeVariety { get; set; }
         [Display(Name = "Wine Type")]
         public String WineType { get; set; }
         public int Year { get; set; }

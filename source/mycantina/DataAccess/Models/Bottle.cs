@@ -20,10 +20,8 @@ namespace mycantina.DataAccess.Models
         public decimal MaxPrice { get; set; }
         public int GrapeVarietyId { get; set; }
         public int WineTypeId { get; set; }
-        public int CountryId { get; set; }
         public int RegionId { get; set; }
         public virtual WineType WineType { get; set; }
-        public virtual Country Country { get; set; }
         public virtual Region Region { get; set; }
         public List<ConsumerBottle> ConsumerBottles { get; set; }
         public List<Review> Reviews { get; set; }

@@ -10,7 +10,6 @@ namespace mycantina.DataAccess.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Bottle> Bottles { get; set; }
         public int RegionId { get; set; }
         public List<Region> Regions { get; set; }
     }
