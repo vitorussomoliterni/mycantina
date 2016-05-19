@@ -11,20 +11,14 @@ namespace mycantina.Services
     public class BottleApplicationService
     {
         private IRepository<Bottle> _bottleRepository;
-        private IRepository<GrapeVariety> _grapeVarietyRepository;
-        private IRepository<GrapeVarietyBottle> _grapeVarietyBottleRepository;
 
-        public BottleApplicationService(IRepository<Bottle> bottleRepository, IRepository<GrapeVariety> grapeVarietyRepository, IRepository<GrapeVarietyBottle> grapeVarietyBottleRepository)
+        public BottleApplicationService(IRepository<Bottle> bottleRepository)
         {
             _bottleRepository = bottleRepository;
-            _grapeVarietyRepository = grapeVarietyRepository;
-            _grapeVarietyBottleRepository = grapeVarietyBottleRepository;
         }
 
-        public Bottle AddBottle(string name, int regionId, int wineTypeId, int year, string producer, string description, int grapeVarietyId)
+        public Bottle AddBottle(string name, int regionId, int wineTypeId, int year, string producer, string description, List<GrapeVariety> varieties)
         {
-            var grapeVariety = _grapeVarietyRepository.Get(grapeVarietyId);
-
             var bottle = new Bottle()
             {
                 Name = name,
@@ -33,33 +27,27 @@ namespace mycantina.Services
                 WineTypeId = wineTypeId,
                 Year = year,
                 Producer = producer,
-                GrapeVarietyId = grapeVariety.Id
+                GrapeVarieties = varieties
             };
-
-            var grapeVarietyBottle = new GrapeVarietyBottle
-            {
-                BottleId = bottle.Id,
-                GrapeVarietyId = grapeVarietyId,
-                Bottle = bottle,
-                GrapeVariety = grapeVariety
-            };
-
-            bottle.GrapeVarietyBottles.Add(grapeVarietyBottle);
-
-            _grapeVarietyBottleRepository.Add(grapeVarietyBottle);
+            
             _bottleRepository.Add(bottle);
 
             return bottle;
         }
 
-        public Bottle UpdateBottle(int id, string name, int regionId, int wineTypeId, int year, string producer, string description, int grapeVarietyId)
+        public Bottle UpdateBottle(int id, string name, int regionId, int wineTypeId, int year, string producer, string description, List<GrapeVariety> varieties)
         {
-            var bottle = _context.Bottles.Find(id);
-            var grapeVarietyBottle = _context.GrapeVarietyBottles.FirstOrDefault(g => g.GrapeVarietyId == bottle.GrapeVarietyId && g.BottleId == bottle.Id);
+            var bottle = _bottleRepository.Get(id);
 
-            if (bottle == null || grapeVarietyBottle == null)
+
+            if (bottle == null || varieties.Count > 0)
             {
                 throw new InvalidOperationException("No bottle found for the provided id.");
+            }
+
+            if (varieties.Count > 0)
+            {
+                throw new InvalidOperationException("At least one grape variety needs to be selected.");
             }
 
             bottle.Name = name;
@@ -68,27 +56,23 @@ namespace mycantina.Services
             bottle.Year = year;
             bottle.Producer = producer;
             bottle.Description = description;
-            bottle.GrapeVarietyId = grapeVarietyId;
-            
-            grapeVarietyBottle.Bottle = bottle;
-            grapeVarietyBottle.GrapeVarietyId = bottle.GrapeVarietyId;
+            bottle.GrapeVarieties = varieties;
 
-            _context.SaveChanges();
+            _bottleRepository.Update(bottle);
 
             return bottle;
         }
 
         public void RemoveBottle(int id)
         {
-            var bottle = _context.Bottles.Find(id);
+            var bottle = _bottleRepository.Get(id);
 
             if (bottle == null)
             {
                 throw new InvalidOperationException("No bottle found for the provided id.");
             }
 
-            _context.Bottles.Remove(bottle);
-            _context.SaveChanges();
+            _bottleRepository.Delete(bottle);
         }
     }
 }

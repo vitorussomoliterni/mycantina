@@ -18,7 +18,6 @@ namespace mycantina.Migrations
                         Description = c.String(maxLength: 4000),
                         MinPrice = c.Decimal(nullable: false, storeType: "money"),
                         MaxPrice = c.Decimal(nullable: false, storeType: "money"),
-                        GrapeVarietyId = c.Int(nullable: false),
                         WineTypeId = c.Int(nullable: false),
                         RegionId = c.Int(nullable: false),
                     })
@@ -90,19 +89,6 @@ namespace mycantina.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.GrapeVarietyBottles",
-                c => new
-                    {
-                        GrapeVarietyId = c.Int(nullable: false),
-                        BottleId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.GrapeVarietyId, t.BottleId })
-                .ForeignKey("dbo.Bottles", t => t.BottleId, cascadeDelete: true)
-                .ForeignKey("dbo.GrapeVarieties", t => t.GrapeVarietyId, cascadeDelete: true)
-                .Index(t => t.GrapeVarietyId)
-                .Index(t => t.BottleId);
-            
-            CreateTable(
                 "dbo.GrapeVarieties",
                 c => new
                     {
@@ -142,6 +128,19 @@ namespace mycantina.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
+            CreateTable(
+                "dbo.GrapeVarietyBottles",
+                c => new
+                    {
+                        GrapeVariety_Id = c.Int(nullable: false),
+                        Bottle_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.GrapeVariety_Id, t.Bottle_Id })
+                .ForeignKey("dbo.GrapeVarieties", t => t.GrapeVariety_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Bottles", t => t.Bottle_Id, cascadeDelete: true)
+                .Index(t => t.GrapeVariety_Id)
+                .Index(t => t.Bottle_Id);
+            
         }
         
         public override void Down()
@@ -149,16 +148,16 @@ namespace mycantina.Migrations
             DropForeignKey("dbo.Bottles", "WineTypeId", "dbo.WineTypes");
             DropForeignKey("dbo.Regions", "CountryId", "dbo.Countries");
             DropForeignKey("dbo.Bottles", "RegionId", "dbo.Regions");
-            DropForeignKey("dbo.GrapeVarietyBottles", "GrapeVarietyId", "dbo.GrapeVarieties");
-            DropForeignKey("dbo.GrapeVarietyBottles", "BottleId", "dbo.Bottles");
+            DropForeignKey("dbo.GrapeVarietyBottles", "Bottle_Id", "dbo.Bottles");
+            DropForeignKey("dbo.GrapeVarietyBottles", "GrapeVariety_Id", "dbo.GrapeVarieties");
             DropForeignKey("dbo.ConsumerBottles", "WineFormatId", "dbo.WineFormats");
             DropForeignKey("dbo.Reviews", "ConsumerId", "dbo.Consumers");
             DropForeignKey("dbo.Reviews", "BottleId", "dbo.Bottles");
             DropForeignKey("dbo.ConsumerBottles", "ConsumerId", "dbo.Consumers");
             DropForeignKey("dbo.ConsumerBottles", "BottleId", "dbo.Bottles");
+            DropIndex("dbo.GrapeVarietyBottles", new[] { "Bottle_Id" });
+            DropIndex("dbo.GrapeVarietyBottles", new[] { "GrapeVariety_Id" });
             DropIndex("dbo.Regions", new[] { "CountryId" });
-            DropIndex("dbo.GrapeVarietyBottles", new[] { "BottleId" });
-            DropIndex("dbo.GrapeVarietyBottles", new[] { "GrapeVarietyId" });
             DropIndex("dbo.Reviews", new[] { "BottleId" });
             DropIndex("dbo.Reviews", new[] { "ConsumerId" });
             DropIndex("dbo.ConsumerBottles", new[] { "WineFormatId" });
@@ -166,11 +165,11 @@ namespace mycantina.Migrations
             DropIndex("dbo.ConsumerBottles", new[] { "ConsumerId" });
             DropIndex("dbo.Bottles", new[] { "RegionId" });
             DropIndex("dbo.Bottles", new[] { "WineTypeId" });
+            DropTable("dbo.GrapeVarietyBottles");
             DropTable("dbo.WineTypes");
             DropTable("dbo.Countries");
             DropTable("dbo.Regions");
             DropTable("dbo.GrapeVarieties");
-            DropTable("dbo.GrapeVarietyBottles");
             DropTable("dbo.WineFormats");
             DropTable("dbo.Reviews");
             DropTable("dbo.Consumers");

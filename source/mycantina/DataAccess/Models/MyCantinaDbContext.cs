@@ -12,7 +12,6 @@ namespace mycantina.DataAccess.Models
     {
         public DbSet<Bottle> Bottles { get; set; }
         public DbSet<GrapeVariety> GrapeVarieties { get; set; }
-        public DbSet<GrapeVarietyBottle> GrapeVarietyBottles { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Consumer> Consumers { get; set; }
         public DbSet<ConsumerBottle> ConsumerBottles { get; set; }
@@ -24,7 +23,6 @@ namespace mycantina.DataAccess.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new BottleMap());
-            modelBuilder.Configurations.Add(new GrapeVarietyBottleMap());
             modelBuilder.Configurations.Add(new GrapeVarietyMap());
             modelBuilder.Configurations.Add(new ReviewMap());
             modelBuilder.Configurations.Add(new ConsumerBottleMap());

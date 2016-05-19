@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SharpRepository.Repository;
 
 namespace mycantina.Services
 {
     public class ConsumerBottleApplicationService
     {
-        private MyCantinaDbContext _context;
+        private IRepository<ConsumerBottle> _consumerBottleRepository;
 
-        public ConsumerBottleApplicationService(MyCantinaDbContext context)
+        public ConsumerBottleApplicationService(IRepository<ConsumerBottle> consumerBottleRepository)
         {
-            _context = context;
+            _consumerBottleRepository = consumerBottleRepository;
         }
 
         public ConsumerBottle AddConsumerBottle(int consumerId, int bottleId, DateTime? dateAcquired, DateTime? dateOpened, int qtyOwned, bool owned, decimal pricePaid, int wineFormatId)
@@ -30,15 +31,14 @@ namespace mycantina.Services
                 WineFormatId = wineFormatId
             };
 
-            _context.ConsumerBottles.Add(consumerBottle);
-            _context.SaveChanges();
+            _consumerBottleRepository.Add(consumerBottle);
 
             return consumerBottle;
         }
 
         public ConsumerBottle UpdateConsumerBottle(int id, DateTime? dateAcquired, DateTime? dateOpened, int qtyOwned, bool owned, decimal pricePaid)
         {
-            var consumerBottle = _context.ConsumerBottles.Find(id);
+            var consumerBottle = _consumerBottleRepository.Get(id);
 
             if (consumerBottle == null)
             {
@@ -55,22 +55,21 @@ namespace mycantina.Services
             consumerBottle.Owned = owned;
             consumerBottle.PricePaid = pricePaid;
 
-            _context.SaveChanges();
+            _consumerBottleRepository.Update(consumerBottle);
 
             return consumerBottle;
         }
 
         public void RemoveConsumerBottle(int id)
         {
-            var consumerBottle = _context.ConsumerBottles.Find(id);
+            var consumerBottle = _consumerBottleRepository.Get(id);
 
             if (consumerBottle == null)
             {
                 throw new InvalidOperationException("No bottle found for the provided id.");
             }
 
-            _context.ConsumerBottles.Remove(consumerBottle);
-            _context.SaveChanges();
+            _consumerBottleRepository.Delete(consumerBottle);
         }
     }
 }

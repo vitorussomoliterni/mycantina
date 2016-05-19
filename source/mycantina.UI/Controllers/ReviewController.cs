@@ -19,7 +19,6 @@ namespace mycantina.UI.Controllers
         private EfRepository<Review> _reviewRepository;
         private EfRepository<Consumer> _consumerRepository;
         private EfRepository<Bottle> _bottleRepository;
-        private EfRepository<GrapeVarietyBottle> _grapeVarietyBottleRepository;
 
         public ReviewController()
         {
@@ -27,7 +26,6 @@ namespace mycantina.UI.Controllers
             _reviewRepository = new EfRepository<Review>(_context);
             _consumerRepository = new EfRepository<Consumer>(_context);
             _bottleRepository = new EfRepository<Bottle>(_context);
-            _grapeVarietyBottleRepository = new EfRepository<GrapeVarietyBottle>(_context);
             _reviewApplicationService = new ReviewApplicationService(_reviewRepository,_consumerRepository,_bottleRepository);
         }
 

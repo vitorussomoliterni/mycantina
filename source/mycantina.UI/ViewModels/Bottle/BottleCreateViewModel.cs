@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using mycantina.DataAccess.Models;
 
 namespace mycantina.UI.ViewModels.Bottle
 {
@@ -28,7 +29,7 @@ namespace mycantina.UI.ViewModels.Bottle
         public string Description { get; set; }
         [Required]
         [Display(Name = "Grape Variety")]
-        public int GrapeVarietyId { get; set; }
+        public List<GrapeVariety> Varieties { get; set; }
         public SelectList GrapeVarieties { get; set; }
     }
 }

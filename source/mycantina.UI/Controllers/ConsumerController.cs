@@ -8,24 +8,27 @@ using mycantina.DataAccess.Models;
 using mycantina.Services;
 using mycantina.UI.ViewModels.Consumer;
 using System.Net;
+using SharpRepository.EfRepository;
 
 namespace mycantina.UI.Controllers
 {
     public class ConsumerController : Controller
     {
         private MyCantinaDbContext _context;
+        private EfRepository<Consumer> _consumerRepository;
         private ConsumerApplicationService _consumerApplicationService;
 
         public ConsumerController()
         {
             _context = new MyCantinaDbContext();
-            _consumerApplicationService = new ConsumerApplicationService(_context);
+            _consumerRepository = new EfRepository<Consumer>(_context);
+            _consumerApplicationService = new ConsumerApplicationService(_consumerRepository);
         }
 
         // GET: Consumer / Index
         public ActionResult Index()
         {
-            var consumers = _context.Consumers.ToList();
+            var consumers = _consumerRepository.GetAll();
             var model = consumers.Select(c => new ConsumerIndexViewModel()
             {
                 Id = c.Id,
@@ -72,7 +75,7 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumer = _context.Consumers.Find(id);
+            var consumer = _consumerRepository.Get(id.Value);
 
             if (consumer == null)
             {
@@ -120,7 +123,7 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumer = _context.Consumers.Find(id);
+            var consumer = _consumerRepository.Get(id.Value);
 
             if (consumer == null)
             {
@@ -148,7 +151,7 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumer = _context.Consumers.Find(id);
+            var consumer = _consumerRepository.Get(id.Value);
 
             if (consumer == null)
             {
@@ -191,7 +194,7 @@ namespace mycantina.UI.Controllers
                 }
             }
 
-            var consumer = _context.Consumers.Find(id);
+            var consumer = _consumerRepository.Get(id.Value);
 
             if (consumer == null)
             {

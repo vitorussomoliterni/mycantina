@@ -8,18 +8,25 @@ using mycantina.DataAccess.Models;
 using mycantina.Services;
 using mycantina.UI.ViewModels.ConsumerBottle;
 using System.Net;
+using SharpRepository.EfRepository;
 
 namespace mycantina.UI.Controllers
 {
     public class ConsumerBottleController : Controller
     {
         private MyCantinaDbContext _context;
+        private EfRepository<ConsumerBottle> _consumerBottleRepository;
+        private EfRepository<Consumer> _consumerRepository;
+        private EfRepository<Bottle> _bottleRepository;
         private ConsumerBottleApplicationService _consumerBottleApplicationService;
 
         public ConsumerBottleController()
         {
             _context = new MyCantinaDbContext();
-            _consumerBottleApplicationService = new ConsumerBottleApplicationService(_context);
+            _consumerBottleRepository = new EfRepository<ConsumerBottle>(_context);
+            _consumerRepository = new EfRepository<Consumer>(_context);
+            _bottleRepository = new EfRepository<Bottle>(_context);
+            _consumerBottleApplicationService = new ConsumerBottleApplicationService(_consumerBottleRepository);
         }
 
         // GET: ConsumerBottle / Index
@@ -30,7 +37,15 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumerBottles = _context.ConsumerBottles.Include(c => c.Consumer).Include(c => c.Bottle).Where(c => c.Consumer.Id == consumerId).ToList();
+            var consumer = _consumerRepository.Get(consumerId.Value);
+
+            if (consumer == null)
+            {
+                return HttpNotFound();
+            }
+
+            var consumerBottles = consumer.ConsumerBottle;
+
             var model = consumerBottles.Select(c => new ConsumerBottleIndexViewModel()
             {
                 Id = c.Id,
@@ -53,8 +68,8 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumer = _context.Consumers.Find(consumerId.Value);
-            var bottle = _context.Bottles.Find(bottleId.Value);
+            var consumer = _consumerRepository.Get(consumerId.Value);
+            var bottle = _bottleRepository.Get(bottleId.Value);
 
             if (consumer == null || bottle == null)
             {
@@ -102,7 +117,7 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var ConsumerBottle = _context.ConsumerBottles.Find(id.Value);
+            var ConsumerBottle = _consumerBottleRepository.Get(id.Value);
 
             if (ConsumerBottle == null)
             {
@@ -156,7 +171,7 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumerBottle = _context.ConsumerBottles.Include(c => c.WineFormat).FirstOrDefault(c => c.Id == id);
+            var consumerBottle = _consumerBottleRepository.Get(id.Value);
 
             if (consumerBottle == null)
             {
@@ -186,7 +201,7 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumerBottle = _context.ConsumerBottles.Include(c => c.WineFormat).FirstOrDefault(c => c.Id == id);
+            var consumerBottle = _consumerBottleRepository.Get(id.Value);
 
             if (consumerBottle == null)
             {
@@ -218,26 +233,24 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumerId = _context.ConsumerBottles.Find(id.Value).ConsumerId;
+            var consumerBottle = _consumerBottleRepository.Get(id.Value);
+
+            if (consumerBottle == null)
+            {
+                return HttpNotFound();
+            }
 
             if (ModelState.IsValid)
             {
                 try
                 {
                     _consumerBottleApplicationService.RemoveConsumerBottle(id.Value);
-                    return RedirectToAction("Index//{0}", consumerId);
+                    return RedirectToAction("Index//{0}", consumerBottle.ConsumerId);
                 }
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("", ex);
                 }
-            }
-
-            var consumerBottle = _context.ConsumerBottles.Include(c => c.WineFormat).FirstOrDefault(c => c.Id == id.Value);
-
-            if (consumerBottle == null)
-            {
-                return HttpNotFound();
             }
 
             var model = new ConsumerBottleDetailsViewModel()
