@@ -72,10 +72,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GrapeVarietyId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GrapeVarieties, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("GrapeVarietyId", Model.GrapeVarieties, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.GrapeVarietyId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.GrapeVarieties, "", new { @class = "text-danger" })
             </div>
         </div>
 

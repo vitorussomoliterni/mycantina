@@ -56,7 +56,7 @@ namespace mycantina.UI.Controllers
                 try
                 {
                     _consumerApplicationService.CreateConsumer(model.FirstName, model.MiddleNames, model.LastName, model.DateOfBirth, model.Email);
-                    RedirectToAction("Index");
+                    return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
