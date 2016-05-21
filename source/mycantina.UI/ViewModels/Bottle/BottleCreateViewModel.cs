@@ -13,11 +13,10 @@ namespace mycantina.UI.ViewModels.Bottle
         [Required]
         [Display(Name = "Bottle Name")]
         public string Name { get; set; }
+        [Required]
+        [Display(Name = "Region")]
         public int RegionId { get; set; }
         public SelectList Regions { get; set; }
-        [Required]
-        public int CountryId { get; set; }
-        public SelectList Countries { get; set; }
         [Required]
         [Display(Name = "Wine Type")]
         public int WineTypeId { get; set; }
@@ -30,6 +29,9 @@ namespace mycantina.UI.ViewModels.Bottle
         [Required]
         [Display(Name = "Grape Variety")]
         public List<GrapeVariety> Varieties { get; set; }
-        public SelectList GrapeVarieties { get; set; }
+        public MultiSelectList GrapeVarieties { get; set; }
+        [Display(Name = "Country")]
+        public int CountryId { get; set; }
+        public SelectList Countries { get; set; }
     }
 }

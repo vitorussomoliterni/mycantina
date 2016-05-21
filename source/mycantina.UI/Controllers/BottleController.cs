@@ -16,12 +16,20 @@ namespace mycantina.UI.Controllers
     {
         private MyCantinaDbContext _context;
         private EfRepository<Bottle> _bottleRepository;
+        private EfRepository<GrapeVariety> _grapeVarietyRepository;
+        private EfRepository<Region> _regionRepository;
+        private EfRepository<WineType> _wineTypeRepository;
+        private EfRepository<Country> _countryRepository;
         private BottleApplicationService _bottleApplicationServie;
-        
+                
         public BottleController()
         {
             _context = new MyCantinaDbContext();
             _bottleRepository = new EfRepository<Bottle>(_context);
+            _grapeVarietyRepository = new EfRepository<GrapeVariety>(_context);
+            _regionRepository = new EfRepository<Region>(_context);
+            _wineTypeRepository = new EfRepository<WineType>(_context);
+            _countryRepository = new EfRepository<Country>(_context);
             _bottleApplicationServie = new BottleApplicationService(_bottleRepository);
         }
 
@@ -48,11 +56,11 @@ namespace mycantina.UI.Controllers
         public ActionResult Create()
         {
             var model = new BottleCreateViewModel();
-            
-            model.Regions = new SelectList(_context.Regions, "Id", "Name");
-            model.Countries = new SelectList(_context.Countries, "Id", "Name");
-            model.WineTypes = new SelectList(_context.WineTypes, "Id", "Name");
-            model.GrapeVarieties = new SelectList(_context.GrapeVarieties, "Id", "Name");
+
+            model.Countries = new SelectList(_countryRepository.GetAll(), "Id", "Name");
+            model.Regions = new SelectList(_regionRepository.GetAll(), "Id", "Name");
+            model.WineTypes = new SelectList(_wineTypeRepository.GetAll(), "Id", "Name");
+            model.GrapeVarieties = new MultiSelectList(_grapeVarietyRepository.GetAll(), "Id", "Name", new[] { 2, 3 });
 
             return View(model);
         }
@@ -74,10 +82,10 @@ namespace mycantina.UI.Controllers
                 }
             }
 
-            model.Regions = new SelectList(_context.Regions, "Id", "Name", model.RegionId);
-            model.Countries = new SelectList(_context.Countries, "Id", "Name", model.CountryId);
-            model.WineTypes = new SelectList(_context.WineTypes, "Id", "Name", model.WineTypeId);
-            model.GrapeVarieties = new SelectList(_context.GrapeVarieties, "Id", "Name", model.Varieties);
+            model.Countries = new SelectList(_countryRepository.GetAll(), "Id", "Name");
+            model.Regions = new SelectList(_regionRepository.GetAll(), "Id", "Name", model.RegionId);
+            model.WineTypes = new SelectList(_wineTypeRepository.GetAll(), "Id", "Name", model.WineTypeId);
+            model.GrapeVarieties = new MultiSelectList(_grapeVarietyRepository.GetAll(), "Id", "Name", model.Varieties);
 
             return View(model);
         }

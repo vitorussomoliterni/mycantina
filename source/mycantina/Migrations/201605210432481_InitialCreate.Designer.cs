@@ -13,7 +13,7 @@ namespace mycantina.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201605190252509_InitialCreate"; }
+            get { return "201605210432481_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
