@@ -60,7 +60,7 @@ namespace mycantina.UI.Controllers
             model.Countries = new SelectList(_countryRepository.GetAll(), "Id", "Name");
             model.Regions = new SelectList(_regionRepository.GetAll(), "Id", "Name");
             model.WineTypes = new SelectList(_wineTypeRepository.GetAll(), "Id", "Name");
-            model.GrapeVarieties = new MultiSelectList(_grapeVarietyRepository.GetAll(), "Id", "Name", new[] { 2, 3 });
+            model.GrapeVarieties = new MultiSelectList(_grapeVarietyRepository.GetAll(), "Id", "Name");
 
             return View(model);
         }
@@ -117,10 +117,10 @@ namespace mycantina.UI.Controllers
                 Varieties = bottle.GrapeVarieties
             };
 
-            model.Regions = new SelectList(_context.Regions, "Id", "Name", model.RegionId);
-            model.Countries = new SelectList(_context.Countries, "Id", "Name", model.CountryId);
-            model.WineTypes = new SelectList(_context.WineTypes, "Id", "Name", model.WineTypeId);
-            model.GrapeVarieties = new SelectList(_context.GrapeVarieties, "Id", "Name", model.Varieties);
+            model.Regions = new SelectList(_regionRepository.GetAll(), "Id", "Name", model.RegionId);
+            model.Countries = new SelectList(_countryRepository.GetAll(), "Id", "Name", model.CountryId);
+            model.WineTypes = new SelectList(_wineTypeRepository.GetAll(), "Id", "Name", model.WineTypeId);
+            model.GrapeVarieties = new SelectList(_grapeVarietyRepository.GetAll(), "Id", "Name", model.Varieties);
 
             return View(model);
         }
@@ -142,10 +142,10 @@ namespace mycantina.UI.Controllers
                 }
             }
 
-            model.Regions = new SelectList(_context.Regions, "Id", "Name", model.RegionId);
-            model.Countries = new SelectList(_context.Countries, "Id", "Name", model.CountryId);
-            model.WineTypes = new SelectList(_context.WineTypes, "Id", "Name", model.WineTypeId);
-            model.GrapeVarieties = new SelectList(_context.GrapeVarieties, "Id", "Name", model.Varieties);
+            model.Regions = new SelectList(_regionRepository.GetAll(), "Id", "Name", model.RegionId);
+            model.Countries = new SelectList(_countryRepository.GetAll(), "Id", "Name", model.CountryId);
+            model.WineTypes = new SelectList(_wineTypeRepository.GetAll(), "Id", "Name", model.WineTypeId);
+            model.GrapeVarieties = new SelectList(_grapeVarietyRepository.GetAll(), "Id", "Name", model.Varieties);
 
             return View(model);
         }
