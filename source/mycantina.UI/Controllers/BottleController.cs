@@ -21,7 +21,7 @@ namespace mycantina.UI.Controllers
         private EfRepository<WineType> _wineTypeRepository;
         private EfRepository<Country> _countryRepository;
         private BottleApplicationService _bottleApplicationServie;
-                
+
         public BottleController()
         {
             _context = new MyCantinaDbContext();
@@ -104,7 +104,7 @@ namespace mycantina.UI.Controllers
             {
                 return HttpNotFound();
             }
-            
+
             var model = new BottleEditViewModel()
             {
                 Id = bottle.Id,
@@ -196,7 +196,7 @@ namespace mycantina.UI.Controllers
             {
                 return HttpNotFound();
             }
-            
+
             var model = new BottleDetailsViewModel()
             {
                 Id = bottle.Id,
@@ -271,6 +271,15 @@ namespace mycantina.UI.Controllers
             }
 
             return s;
+        }
+
+        public ActionResult Regions(int countryId)
+        {
+            var regions = _regionRepository.FindAll(r => r.CountryId == countryId);
+            return Json(new[]
+            {
+                regions
+            }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
