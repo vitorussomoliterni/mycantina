@@ -276,10 +276,15 @@ namespace mycantina.UI.Controllers
         public ActionResult Regions(int countryId)
         {
             var regions = _regionRepository.FindAll(r => r.CountryId == countryId);
-            return Json(new[]
-            {
-                regions
-            }, JsonRequestBehavior.AllowGet);
+            var modelList = regions.Select(r =>
+                new
+                {
+                    Value = r.Id,
+                    Name = r.Name
+                });
+            return Json(            
+                modelList
+            , JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
