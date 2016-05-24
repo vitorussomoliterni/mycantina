@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GrapeVarieties, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Varieties, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.ListBoxFor(model => model.Varieties, Model.GrapeVarieties as MultiSelectList, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.GrapeVarieties, "", new { @class = "text-danger" })
@@ -32,28 +32,29 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CountryId", Model.Countries, "Please select a Country", new { @class = "form-control", @id = "country-select"})
+                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             <label class="control-label col-md-2">Region</label>
             <div class="col-md-10">
-                <select class="form-control" id="region" name="region" disabled>
+                <select class="form-control" id="RegionId" name="RegionId" disabled>
                     <option>Please select a Country first</option>
                 </select>
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            @Html.LabelFor(model => model.WineTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("WineTypeId", Model.WineTypes, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.WineTypeId, "", new { @class = "text-danger" })
             </div>
         </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.WineTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("WineTypeId", Model.WineTypes, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.WineTypeId, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -80,12 +81,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CountryId", Model.Countries, new { @class = "form-control", @id = "country-select" })
-                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
+    </div>
 }
 
 <div>

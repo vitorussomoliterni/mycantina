@@ -28,7 +28,7 @@ namespace mycantina.UI.ViewModels.Bottle
         public string Description { get; set; }
         [Required]
         [Display(Name = "Grape Variety")]
-        public List<GrapeVariety> Varieties { get; set; }
+        public int[] Varieties { get; set; }
         public MultiSelectList GrapeVarieties { get; set; }
         [Display(Name = "Country")]
         public int CountryId { get; set; }

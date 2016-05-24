@@ -10,8 +10,8 @@
             function (data, textStatus, jqXHR) {
                 var context = { regions: data };
                 var html = template(context);
-                $("#region").html(html);
-                $("#region").prop('disabled', false);
+                $("#RegionId").html(html);
+                $("#RegionId").prop('disabled', false);
             });
         });
     });

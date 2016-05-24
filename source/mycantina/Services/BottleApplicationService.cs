@@ -11,14 +11,23 @@ namespace mycantina.Services
     public class BottleApplicationService
     {
         private IRepository<Bottle> _bottleRepository;
+        private IRepository<GrapeVariety> _varietyRepository;
 
-        public BottleApplicationService(IRepository<Bottle> bottleRepository)
+        public BottleApplicationService(IRepository<Bottle> bottleRepository, IRepository<GrapeVariety> varietyRepository)
         {
             _bottleRepository = bottleRepository;
+            _varietyRepository = varietyRepository;
         }
 
-        public Bottle AddBottle(string name, int regionId, int wineTypeId, int year, string producer, string description, List<GrapeVariety> varieties)
+        public Bottle AddBottle(string name, int regionId, int wineTypeId, int year, string producer, string description, int[] varieties)
         {
+            // Contains works like this:
+            // The varities array has (1, 2, 3)
+            // The contains will pull back any variety that has an id that is contained within this array
+
+            var varietiesDbEntities = _varietyRepository.AsQueryable()
+                .Where(v => varieties.Contains(v.Id)).ToList();
+
             var bottle = new Bottle()
             {
                 Name = name,
@@ -27,7 +36,7 @@ namespace mycantina.Services
                 WineTypeId = wineTypeId,
                 Year = year,
                 Producer = producer,
-                GrapeVarieties = varieties
+                GrapeVarieties = varietiesDbEntities
             };
             
             _bottleRepository.Add(bottle);
