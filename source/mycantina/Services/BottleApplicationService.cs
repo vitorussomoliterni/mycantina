@@ -12,11 +12,13 @@ namespace mycantina.Services
     {
         private IRepository<Bottle> _bottleRepository;
         private IRepository<GrapeVariety> _varietyRepository;
+        private IRepository<Region> _regionRepository;
 
-        public BottleApplicationService(IRepository<Bottle> bottleRepository, IRepository<GrapeVariety> varietyRepository)
+        public BottleApplicationService(IRepository<Bottle> bottleRepository, IRepository<GrapeVariety> varietyRepository, IRepository<Region> regionRepository)
         {
             _bottleRepository = bottleRepository;
             _varietyRepository = varietyRepository;
+            _regionRepository = regionRepository;
         }
 
         public Bottle AddBottle(string name, int regionId, int wineTypeId, int year, string producer, string description, int[] varieties)
@@ -47,11 +49,12 @@ namespace mycantina.Services
         public Bottle UpdateBottle(int id, string name, int regionId, int wineTypeId, int year, string producer, string description, int[] varieties)
         {
             var bottle = _bottleRepository.Get(id);
+            var region = _regionRepository.Get(regionId);
             var varietiesDbEntities = _varietyRepository.AsQueryable()
                 .Where(v => varieties.Contains(v.Id)).ToList();
 
 
-            if (bottle == null)
+            if (bottle == null || region == null)
             {
                 throw new InvalidOperationException("No bottle found for the provided id.");
             }
@@ -62,7 +65,7 @@ namespace mycantina.Services
             }
 
             bottle.Name = name;
-            bottle.RegionId = regionId;
+            bottle.Region = region;
             bottle.WineTypeId = wineTypeId;
             bottle.Year = year;
             bottle.Producer = producer;
