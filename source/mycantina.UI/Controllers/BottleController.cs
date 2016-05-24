@@ -30,7 +30,7 @@ namespace mycantina.UI.Controllers
             _regionRepository = new EfRepository<Region>(_context);
             _wineTypeRepository = new EfRepository<WineType>(_context);
             _countryRepository = new EfRepository<Country>(_context);
-            _bottleApplicationServie = new BottleApplicationService(_bottleRepository, _grapeVarietyRepository, _regionRepository);
+            _bottleApplicationServie = new BottleApplicationService(_bottleRepository, _grapeVarietyRepository, _regionRepository, _wineTypeRepository);
         }
 
         // GET: Bottle / Index

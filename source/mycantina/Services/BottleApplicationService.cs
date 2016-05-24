@@ -13,12 +13,14 @@ namespace mycantina.Services
         private IRepository<Bottle> _bottleRepository;
         private IRepository<GrapeVariety> _varietyRepository;
         private IRepository<Region> _regionRepository;
+        private IRepository<WineType> _wineTypeRepository;
 
-        public BottleApplicationService(IRepository<Bottle> bottleRepository, IRepository<GrapeVariety> varietyRepository, IRepository<Region> regionRepository)
+        public BottleApplicationService(IRepository<Bottle> bottleRepository, IRepository<GrapeVariety> varietyRepository, IRepository<Region> regionRepository, IRepository<WineType> wineTypeRepository)
         {
             _bottleRepository = bottleRepository;
             _varietyRepository = varietyRepository;
             _regionRepository = regionRepository;
+            _wineTypeRepository = wineTypeRepository;
         }
 
         public Bottle AddBottle(string name, int regionId, int wineTypeId, int year, string producer, string description, int[] varieties)
@@ -50,11 +52,12 @@ namespace mycantina.Services
         {
             var bottle = _bottleRepository.Get(id);
             var region = _regionRepository.Get(regionId);
+            var wineType = _wineTypeRepository.Get(wineTypeId);
             var varietiesDbEntities = _varietyRepository.AsQueryable()
                 .Where(v => varieties.Contains(v.Id)).ToList();
 
 
-            if (bottle == null || region == null)
+            if (bottle == null || region == null || wineType == null)
             {
                 throw new InvalidOperationException("No bottle found for the provided id.");
             }
@@ -66,11 +69,13 @@ namespace mycantina.Services
 
             bottle.Name = name;
             bottle.Region = region;
-            bottle.WineTypeId = wineTypeId;
+            bottle.WineType = wineType;
             bottle.Year = year;
             bottle.Producer = producer;
             bottle.Description = description;
             bottle.GrapeVarieties = varietiesDbEntities;
+
+            // TODO: EVERYTHING IS BROKEN FIX THIS!!!
 
             _bottleRepository.Update(bottle);
 
