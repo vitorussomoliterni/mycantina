@@ -44,17 +44,19 @@ namespace mycantina.Services
             return bottle;
         }
 
-        public Bottle UpdateBottle(int id, string name, int regionId, int wineTypeId, int year, string producer, string description, List<GrapeVariety> varieties)
+        public Bottle UpdateBottle(int id, string name, int regionId, int wineTypeId, int year, string producer, string description, int[] varieties)
         {
             var bottle = _bottleRepository.Get(id);
+            var varietiesDbEntities = _varietyRepository.AsQueryable()
+                .Where(v => varieties.Contains(v.Id)).ToList();
 
 
-            if (bottle == null || varieties.Count > 0)
+            if (bottle == null)
             {
                 throw new InvalidOperationException("No bottle found for the provided id.");
             }
 
-            if (varieties.Count > 0)
+            if (varieties.Length < 0)
             {
                 throw new InvalidOperationException("At least one grape variety needs to be selected.");
             }
@@ -65,7 +67,7 @@ namespace mycantina.Services
             bottle.Year = year;
             bottle.Producer = producer;
             bottle.Description = description;
-            bottle.GrapeVarieties = varieties;
+            bottle.GrapeVarieties = varietiesDbEntities;
 
             _bottleRepository.Update(bottle);
 

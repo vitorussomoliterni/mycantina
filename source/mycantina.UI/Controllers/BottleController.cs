@@ -106,6 +106,14 @@ namespace mycantina.UI.Controllers
                 return HttpNotFound();
             }
 
+            var varietiesList = bottle.GrapeVarieties.ToArray();    // Getting a list of grapevarieties for this bottle
+            int[] varietiesArray = new int[varietiesList.Length];  // Forcing the list to fit into an array
+
+            for (int i = 0; i < bottle.GrapeVarieties.Count; i++)   // Populating the array
+            {
+                varietiesArray[i] = varietiesList[i].Id;
+            }
+
             var model = new BottleEditViewModel()
             {
                 Id = bottle.Id,
@@ -115,7 +123,7 @@ namespace mycantina.UI.Controllers
                 Year = bottle.Year,
                 Producer = bottle.Producer,
                 Description = bottle.Description,
-                Varieties = bottle.GrapeVarieties
+                Varieties = varietiesArray
             };
 
             model.Regions = new SelectList(_regionRepository.GetAll(), "Id", "Name", model.RegionId);

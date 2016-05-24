@@ -26,18 +26,27 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RegionId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Varieties, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("RegionId", Model.Regions, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                @Html.ListBoxFor(model => model.Varieties, Model.GrapeVarieties as MultiSelectList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GrapeVarieties, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CountryId", Model.Countries, new { @class = "form-control" })
+                @Html.EditorFor(model => model.CountryId, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Region</label>
+            <div class="col-md-10">
+                <select class="form-control" id="RegionId" name="RegionId" disabled>
+                    <option>Please select a Country first</option>
+                </select>
             </div>
         </div>
 
@@ -74,16 +83,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GrapeVarietyId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("GrapeVarietyId", Model.GrapeVarieties, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.GrapeVarietyId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @* TODO: Add javascript to add multiple GrapeVarieties *@
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
@@ -95,6 +94,15 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+<script id="region-option-template" type="text/x-handlebars-template">
+    <option selected>Please select a region</option>
+    {{#each regions}}
+    <option value="{{Value}}">{{Name}}</option>
+    {{/each}}
+</script>
+
 @section Scripts {
+    <script src="~/Scripts/CountrySelectorScript.js"></script>
+    <script src="~/Scripts/handlebars.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
 }
