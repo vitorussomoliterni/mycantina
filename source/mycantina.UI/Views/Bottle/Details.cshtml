@@ -43,11 +43,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Type)
+            @Html.DisplayNameFor(model => model.WineType)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Type)
+            @Html.DisplayFor(model => model.WineType)
         </dd>
 
         <dt>
@@ -82,23 +82,9 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Add to my bottles" class="btn btn-default" id="AddToConsumerButton" />
-            </div>
-        </div>
-
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
-
-(function () {
-    $(document).ready(function () {
-        $("#AddToConsumerButton").click(function () {
-            location.href = 
-        })
-    })
-})();
