@@ -285,14 +285,14 @@ namespace mycantina.UI.Controllers
         public ActionResult Regions(int countryId)
         {
             var regions = _regionRepository.FindAll(r => r.CountryId == countryId);
-            var modelList = regions.Select(r =>
+            var regionsList = regions.Select(r =>
                 new
                 {
                     Value = r.Id,
                     Name = r.Name
                 });
             return Json(            
-                modelList
+                regionsList
             , JsonRequestBehavior.AllowGet);
         }
 

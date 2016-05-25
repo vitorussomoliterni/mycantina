@@ -214,6 +214,18 @@ namespace mycantina.UI.Controllers
             return View(model);
         }
 
+        public ActionResult ConsumersList()
+        {
+            var consumers = _consumerRepository.GetAll();
+            var list = consumers.Select(c => new
+            {
+                Value = c.Id,
+                Name = c.FirstName + " " + c.LastName
+            });
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

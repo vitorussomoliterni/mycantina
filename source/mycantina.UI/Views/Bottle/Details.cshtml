@@ -82,9 +82,7 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-        <div id="select-user-form" class="col-md-offset-2">
-
-        </div>
+        <div id="select-consumer-form" class="col-md-offset-2 col-md-10"></div>
 
         <div class="col-md-offset-2 col-md-10">
             <input type="button" value="Add to collection" id="add-collection-btn" class="btn btn-primary" />
@@ -97,8 +95,19 @@
     @Html.ActionLink("Back to List", "Index")
 </p>
 
-<script id="user-select-template" type="text/x-handlebars-template">
-<p>Insert dropdownlist here.</p>
+<script id="consumer-select-template" type="text/x-handlebars-template">
+    <div class="form-group">
+        <label for="consumer-selection">Select a consumer:</label>
+        <select class="form-control" id="consumer-selection">
+            <option>Please select a consumer</option>
+            {{#each consumers}}
+            <option value="{{Value}}">{{Name}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="col-md-offset-1 col-md-10">
+        <input type="button" value="Confirm consumer" id="confirm-consumer-btn" class="btn btn-primary" disabled />
+    </div>
 </script>
 
 @section Scripts {
