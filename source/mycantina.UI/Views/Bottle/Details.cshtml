@@ -82,9 +82,27 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
+        <div id="select-user-form" class="col-md-offset-2">
+
+        </div>
+
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" value="Add to collection" id="add-collection-btn" class="btn btn-primary" />
+        </div>
+
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<script id="user-select-template" type="text/x-handlebars-template">
+<p>Insert dropdownlist here.</p>
+</script>
+
+@section Scripts {
+    <script src="~/Scripts/add-bottle-to-collection.js"></script>
+    <script src="~/Scripts/handlebars.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
