@@ -2,9 +2,9 @@
     $(document).ready(function () {
         var source = $("#consumer-select-template").html();
         var template = Handlebars.compile(source);
+        var bottleId = $("#bottleIdForJquery").html();
 
         $("#add-collection-btn").click(function (e) {
-            //$("#select-user-form").append(template);
             $("#add-collection-btn").hide();
 
             $.get('/Consumer/ConsumersList/',
@@ -14,13 +14,13 @@
                     $("#select-consumer-form").html(html);
 
                     $("#consumer-selection").change(function (e) {
+                        var consumerSelected = this.value;
+                        
                         $("#confirm-consumer-btn").prop('disabled', false);
-
-                        // TODO: Get the selected option
-
+                        
                         $("#confirm-consumer-btn").click(function (e) {
                             console.log('Button clicked');
-                            // TODO: Add a link to the create consumer bottle action
+                            window.location.href = "/ConsumerBottle/Create?consumerId=" + consumerSelected + "&bottleId=" + bottleId;
                         });
                     });
                 });
