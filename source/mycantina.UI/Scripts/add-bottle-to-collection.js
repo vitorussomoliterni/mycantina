@@ -2,7 +2,7 @@
     $(document).ready(function () {
         var source = $("#consumer-select-template").html();
         var template = Handlebars.compile(source);
-        var bottleId = $("#bottleIdForJquery").html();
+        var bottleId = $("#bottleIdForJquery").html().trim();
 
         $("#add-collection-btn").click(function (e) {
             $("#add-collection-btn").hide();

@@ -30,21 +30,21 @@ namespace mycantina.UI.Controllers
         }
 
         // GET: ConsumerBottle / Index
-        public ActionResult Index(int? consumerId)
+        public ActionResult Index(int? id)
         {
-            if (consumerId == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumer = _consumerRepository.Get(consumerId.Value);
+            var consumer = _consumerRepository.Get(id.Value);
 
             if (consumer == null)
             {
                 return HttpNotFound();
             }
 
-            var consumerBottles = consumer.ConsumerBottle;
+            var consumerBottles = consumer.ConsumerBottles;
 
             var model = consumerBottles.Select(c => new ConsumerBottleIndexViewModel()
             {

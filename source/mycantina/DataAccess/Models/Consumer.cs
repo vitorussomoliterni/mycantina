@@ -11,7 +11,7 @@ namespace mycantina.DataAccess.Models
         public Consumer()
         {
             Reviews = new List<Review>();
-            ConsumerBottle = new List<ConsumerBottle>();
+            ConsumerBottles = new List<ConsumerBottle>();
         }
         public int Id { get; set; }
         public String FirstName { get; set; }
@@ -19,7 +19,7 @@ namespace mycantina.DataAccess.Models
         public String LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Email { get; set; }
-        public List<ConsumerBottle> ConsumerBottle { get; set; }
+        public List<ConsumerBottle> ConsumerBottles { get; set; }
         public List<Review> Reviews { get; set; }
     }
 }
