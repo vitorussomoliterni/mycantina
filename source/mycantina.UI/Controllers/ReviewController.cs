@@ -74,6 +74,8 @@ namespace mycantina.UI.Controllers
                 BottleId = bottleId.Value
             };
 
+            model.Ratings = new SelectList(new List<int>{ 1, 2, 3, 4, 5 });
+
             return View(model);
         }
 
@@ -93,6 +95,8 @@ namespace mycantina.UI.Controllers
                     ModelState.AddModelError("", ex);
                 }
             }
+
+            model.Ratings = new SelectList(new List<int> { 1, 2, 3, 4, 5 });
 
             return View(model);
         }
@@ -122,6 +126,8 @@ namespace mycantina.UI.Controllers
                 Text = review.Text
             };
 
+            model.Ratings = new SelectList(new List<int> { 1, 2, 3, 4, 5 });
+
             return View(model);
         }
 
@@ -141,6 +147,8 @@ namespace mycantina.UI.Controllers
                     ModelState.AddModelError("", ex);
                 }
             }
+
+            model.Ratings = new SelectList(new int[] { 1, 2, 3, 4, 5 });
 
             return View(model);
         }
