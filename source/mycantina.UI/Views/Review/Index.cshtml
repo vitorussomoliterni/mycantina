@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.DatePosted)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ConsumerId + "/" + item.BottleId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ConsumerId + "/" + item.BottleId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ConsumerId + "/" + item.BottleId })
+            @Html.ActionLink("Edit", "Edit", new { consumerId = item.ConsumerId, bottleId = item.BottleId }) |
+            @Html.ActionLink("Details", "Details", new { consumerId = item.ConsumerId, bottleId = item.BottleId }) |
+            @Html.ActionLink("Delete", "Delete", new { consumerId = item.ConsumerId, bottleId = item.BottleId })
         </td>
     </tr>
 }

@@ -30,25 +30,18 @@ namespace mycantina.UI.Controllers
         }
 
         // GET: Review / Index
-        public ActionResult Index(int? consumerId)
+        public ActionResult Index(int? id)
         {
-            if (consumerId == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumer = _consumerRepository.Find(r => r.Id == consumerId);
-
-            if (consumer == null)
-            {
-                return HttpNotFound();
-            }
-
-            var reviews = consumer.Reviews;
+            var reviews = _reviewRepository.AsQueryable().Where(r => r.ConsumerId == id);
             
             var model = reviews.Select(r => new ReviewIndexViewModel()
             {
-                ConsumerId = consumerId.Value,
+                ConsumerId = id.Value,
                 BottleId = r.BottleId,
                 BottleName = r.Bottle.Name,
                 Text = r.Text,
@@ -93,7 +86,7 @@ namespace mycantina.UI.Controllers
                 try
                 {
                     _reviewApplicationService.AddReview(model.ConsumerId, model.BottleId, model.Text, model.Rating);
-                    return RedirectToAction("Deatils//{0}//{1}", model.ConsumerId.ToString(), model.BottleId.ToString());
+                    return RedirectToAction("Details", new { consumerId = model.ConsumerId, bottleId = model.BottleId });
                 }
                 catch (Exception ex)
                 {
@@ -141,7 +134,7 @@ namespace mycantina.UI.Controllers
                 try
                 {
                     _reviewApplicationService.UpdateReview(model.ConsumerId, model.BottleId, model.Text, model.Rating);
-                    return RedirectToAction("Deatils//{0}//{1}", model.ConsumerId.ToString(), model.BottleId.ToString());
+                    return RedirectToAction("Details", new { consumerId = model.ConsumerId, bottleId = model.BottleId });
                 }
                 catch (Exception ex)
                 {
@@ -235,7 +228,7 @@ namespace mycantina.UI.Controllers
                 try
                 {
                     _reviewApplicationService.RemoveReview(consumerId.Value, bottleId.Value);
-                    return RedirectToAction("Index//{0}", consumerId.ToString());
+                    return RedirectToAction("Index", new { id = consumerId });
                 }
                 catch (Exception ex)
                 {
