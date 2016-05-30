@@ -61,7 +61,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Go to Bottle", "Details", "Bottle", null , new { id = Model.Id }) |
+    @Html.ActionLink("Add a review", "Create", "Review", new { consumerId = Model.ConsumerId, bottleId = Model.BottleId }, null) |
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index/" + Model.ConsumerId)
 </p>

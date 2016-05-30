@@ -85,11 +85,7 @@ namespace mycantina.Migrations
             context.Countries.AddOrUpdate(
                 c => c.Name,
                 new Country { Name = "Italy" },
-                new Country { Name = "Australia" },
-                new Country { Name = "France" },
-                new Country { Name = "Germany" },
-                new Country { Name = "USA" },
-                new Country { Name = "New Zealand" }
+                new Country { Name = "Australia" }
                 );
 
             context.Regions.AddOrUpdate(

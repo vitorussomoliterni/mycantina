@@ -18,6 +18,7 @@ namespace mycantina.UI.Controllers
         private EfRepository<ConsumerBottle> _consumerBottleRepository;
         private EfRepository<Consumer> _consumerRepository;
         private EfRepository<Bottle> _bottleRepository;
+        private EfRepository<WineFormat> _wineFormatRepository;
         private ConsumerBottleApplicationService _consumerBottleApplicationService;
 
         public ConsumerBottleController()
@@ -26,7 +27,8 @@ namespace mycantina.UI.Controllers
             _consumerBottleRepository = new EfRepository<ConsumerBottle>(_context);
             _consumerRepository = new EfRepository<Consumer>(_context);
             _bottleRepository = new EfRepository<Bottle>(_context);
-            _consumerBottleApplicationService = new ConsumerBottleApplicationService(_consumerBottleRepository);
+            _wineFormatRepository = new EfRepository<WineFormat>(_context);
+            _consumerBottleApplicationService = new ConsumerBottleApplicationService(_consumerBottleRepository, _consumerRepository);
         }
 
         // GET: ConsumerBottle / Index
@@ -37,14 +39,7 @@ namespace mycantina.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var consumer = _consumerRepository.Get(id.Value);
-
-            if (consumer == null)
-            {
-                return HttpNotFound();
-            }
-
-            var consumerBottles = consumer.ConsumerBottles;
+            var consumerBottles = _consumerBottleRepository.AsQueryable().Where(c => c.ConsumerId == id);
 
             var model = consumerBottles.Select(c => new ConsumerBottleIndexViewModel()
             {
@@ -96,7 +91,7 @@ namespace mycantina.UI.Controllers
                 try
                 {
                     _consumerBottleApplicationService.AddConsumerBottle(model.ConsumerId, model.BottleId, model.DateAcquired, model.DateOpened, model.QtyOwned, model.Owned, model.PricePaid, model.WineFormatId);
-                    return RedirectToAction("Index//{0}", model.ConsumerId);
+                    return RedirectToAction("Index//" + model.ConsumerId);
                 }
                 catch (Exception ex)
                 {
@@ -150,7 +145,7 @@ namespace mycantina.UI.Controllers
                 try
                 {
                     _consumerBottleApplicationService.UpdateConsumerBottle(model.Id, model.DateAcquired, model.DateOpened, model.QtyOwned, model.Owned, model.PricePaid);
-                    return RedirectToAction("Details//{0}", model.Id);
+                    return RedirectToAction("Details//" + model.Id);
                 }
                 catch (Exception ex)
                 {
@@ -178,16 +173,24 @@ namespace mycantina.UI.Controllers
                 return HttpNotFound();
             }
 
+            var wineFormat = _wineFormatRepository.Get(consumerBottle.WineFormatId);
+
+            if (wineFormat == null)
+            {
+                return HttpNotFound();
+            }
+
             var model = new ConsumerBottleDetailsViewModel()
             {
                 Id = consumerBottle.Id,
                 ConsumerId = consumerBottle.ConsumerId,
+                BottleId = consumerBottle.BottleId,
                 DateAcquired = consumerBottle.DateAcquired,
                 DateOpened = consumerBottle.DateOpened,
                 Owned = consumerBottle.Owned,
                 PricePaid = consumerBottle.PricePaid,
                 QtyOwned = consumerBottle.QtyOwned,
-                WineFormat = consumerBottle.WineFormat.Name
+                WineFormat = wineFormat.Name
             };
 
             return View(model);
@@ -245,7 +248,7 @@ namespace mycantina.UI.Controllers
                 try
                 {
                     _consumerBottleApplicationService.RemoveConsumerBottle(id.Value);
-                    return RedirectToAction("Index//{0}", consumerBottle.ConsumerId);
+                    return RedirectToAction("Index//" + consumerBottle.ConsumerId);
                 }
                 catch (Exception ex)
                 {

@@ -11,10 +11,12 @@ namespace mycantina.Services
     public class ConsumerBottleApplicationService
     {
         private IRepository<ConsumerBottle> _consumerBottleRepository;
+        private IRepository<Consumer> _consumerRepository;
 
-        public ConsumerBottleApplicationService(IRepository<ConsumerBottle> consumerBottleRepository)
+        public ConsumerBottleApplicationService(IRepository<ConsumerBottle> consumerBottleRepository, IRepository<Consumer> consumerRepository)
         {
             _consumerBottleRepository = consumerBottleRepository;
+            _consumerRepository = consumerRepository;
         }
 
         public ConsumerBottle AddConsumerBottle(int consumerId, int bottleId, DateTime? dateAcquired, DateTime? dateOpened, int qtyOwned, bool owned, decimal pricePaid, int wineFormatId)
