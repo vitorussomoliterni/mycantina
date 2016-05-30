@@ -91,7 +91,7 @@ namespace mycantina.UI.Controllers
                 try
                 {
                     _consumerBottleApplicationService.AddConsumerBottle(model.ConsumerId, model.BottleId, model.DateAcquired, model.DateOpened, model.QtyOwned, model.Owned, model.PricePaid, model.WineFormatId);
-                    return RedirectToAction("Index//" + model.ConsumerId);
+                    return RedirectToAction("Index", new { id = model.ConsumerId });
                 }
                 catch (Exception ex)
                 {
@@ -145,7 +145,7 @@ namespace mycantina.UI.Controllers
                 try
                 {
                     _consumerBottleApplicationService.UpdateConsumerBottle(model.Id, model.DateAcquired, model.DateOpened, model.QtyOwned, model.Owned, model.PricePaid);
-                    return RedirectToAction("Details//" + model.Id);
+                    return RedirectToAction("Details", new { id = model.ConsumerId });
                 }
                 catch (Exception ex)
                 {
@@ -248,7 +248,7 @@ namespace mycantina.UI.Controllers
                 try
                 {
                     _consumerBottleApplicationService.RemoveConsumerBottle(id.Value);
-                    return RedirectToAction("Index//" + consumerBottle.ConsumerId);
+                    return RedirectToAction("Index", new { id = consumerBottle.ConsumerId });
                 }
                 catch (Exception ex)
                 {
