@@ -208,7 +208,7 @@ namespace mycantina.UI.Controllers
                 return HttpNotFound();
             }
 
-            var model = new ReviewIndexViewModel()
+            var model = new ReviewDetailsViewModel()
             {
                 ConsumerId = consumerId.Value,
                 BottleId = bottleId.Value,
@@ -253,7 +253,7 @@ namespace mycantina.UI.Controllers
                 return HttpNotFound();
             }
 
-            var model = new ReviewIndexViewModel()
+            var model = new ReviewDetailsViewModel()
             {
                 ConsumerId = consumerId.Value,
                 BottleId = bottleId.Value,
