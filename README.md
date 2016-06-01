@@ -7,8 +7,7 @@ This is a rough web app born as final project for my TAFE Certificate IV in prog
 It's made with these technologies:
 * Visual Studio 2015
 * Entity Framework
-* ASP.NET
-* MVC 5
+* ASP.NET MVC 5
 * C#
 * JavaScript
 * jQuery
