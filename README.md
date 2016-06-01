@@ -12,4 +12,5 @@ It's made with these technologies:
 * JavaScript
 * jQuery
 * Handlebars.js
+* Ajax
 * xUnit
