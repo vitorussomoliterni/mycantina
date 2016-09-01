@@ -25,10 +25,6 @@ namespace mycantina.Services
 
         public Bottle AddBottle(string name, int regionId, int wineTypeId, int year, string producer, string description, int[] varieties)
         {
-            // Contains works like this:
-            // The varities array has (1, 2, 3)
-            // The contains will pull back any variety that has an id that is contained within this array
-
             var varietiesDbEntities = _varietyRepository.AsQueryable()
                 .Where(v => varieties.Contains(v.Id)).ToList();
 
@@ -74,8 +70,6 @@ namespace mycantina.Services
             bottle.Producer = producer;
             bottle.Description = description;
             bottle.GrapeVarieties = varietiesDbEntities;
-
-            // TODO: EVERYTHING IS BROKEN FIX THIS!!!
 
             _bottleRepository.Update(bottle);
 
